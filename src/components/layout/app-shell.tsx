@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 import {
   Menu,
   Wrench,
-  ChevronsUpDown,
   Home,
   PlusCircle,
   Users,
@@ -28,13 +27,6 @@ import { iniciais } from "@/lib/format"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { SignOutButton } from "@/components/layout/sign-out-button"
 import { DOMINIO_ICON_CLASSES, type NavGroup, type NavIconName } from "@/components/layout/nav-types"
 
@@ -101,29 +93,26 @@ function NavLinks({ groups, onNavigate }: { groups: NavGroup[]; onNavigate?: () 
   )
 }
 
+// Sem dropdown de propósito: um menu suspenso aninhado dentro do Sheet
+// mobile é frágil (portais/z-index a competir) e o terminar sessão é
+// demasiado importante para depender disso — fica sempre visível e a um
+// único toque, tanto no desktop como no mobile.
 function UserMenu({ nome, email, perfilLabel }: { nome: string; email: string; perfilLabel: string }) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="flex w-full items-center gap-2 rounded-md border p-2 text-left hover:bg-muted">
-        <Avatar className="h-8 w-8">
+    <div className="space-y-2">
+      <div className="flex items-center gap-2 rounded-md border p-2">
+        <Avatar className="h-8 w-8 shrink-0">
           <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
             {iniciais(nome)}
           </AvatarFallback>
         </Avatar>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium">{nome}</p>
-          <p className="truncate text-xs text-muted-foreground">{perfilLabel}</p>
+          <p className="truncate text-xs text-muted-foreground">{email || perfilLabel}</p>
         </div>
-        <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel className="truncate font-normal text-muted-foreground">
-          {email}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <SignOutButton />
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </div>
+      <SignOutButton />
+    </div>
   )
 }
 
