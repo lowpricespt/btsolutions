@@ -1,11 +1,15 @@
 import Link from "next/link"
 import { CompassIcon } from "lucide-react"
+import { Logo } from "@/components/brand/logo"
 import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
-      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-domain-blue-soft text-domain-blue">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-muted/30 px-4 text-center">
+      <Link href="/">
+        <Logo tamanho="h-9" />
+      </Link>
+      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy-soft text-brand-navy">
         <CompassIcon className="h-7 w-7" />
       </span>
       <div>
@@ -14,7 +18,10 @@ export default function NotFound() {
           O link pode estar errado ou a página já não existe.
         </p>
       </div>
-      <Button render={<Link href="/">Voltar ao início</Link>} />
+      <Button
+        className="bg-brand-navy text-brand-navy-foreground hover:bg-brand-navy/90"
+        render={<Link href="/">Voltar ao início</Link>}
+      />
     </div>
   )
 }

@@ -43,10 +43,19 @@ export default async function ClienteDashboardPage() {
       </div>
 
       {lista.length === 0 ? (
-        <div className="rounded-xl border border-dashed p-10 text-center">
-          <p className="text-muted-foreground">Ainda não fizeste nenhum pedido.</p>
+        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed p-12 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-gold-soft text-brand-gold-foreground">
+            <Inbox className="h-6 w-6" />
+          </span>
+          <div>
+            <p className="font-semibold">Bem-vindo à BTS!</p>
+            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+              Ainda não fizeste nenhum pedido. Diz-nos o que precisas e a nossa equipa entra em
+              contacto contigo em menos de 24h.
+            </p>
+          </div>
           <Button
-            className="mt-4"
+            className="mt-2 bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
             render={
               <Link href="/cliente/pedidos/novo">
                 <PlusCircle className="h-4 w-4" />

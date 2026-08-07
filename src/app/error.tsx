@@ -1,7 +1,9 @@
 "use client"
 
 import { useEffect } from "react"
+import Link from "next/link"
 import { AlertTriangle } from "lucide-react"
+import { Logo } from "@/components/brand/logo"
 import { Button } from "@/components/ui/button"
 
 export default function GlobalError({
@@ -16,7 +18,10 @@ export default function GlobalError({
   }, [error])
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-muted/30 px-4 text-center">
+      <Link href="/">
+        <Logo tamanho="h-9" />
+      </Link>
       <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-100 text-red-600 dark:bg-red-950 dark:text-red-300">
         <AlertTriangle className="h-7 w-7" />
       </span>
