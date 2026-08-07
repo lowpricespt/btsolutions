@@ -197,6 +197,14 @@ export default function RegistoPage() {
             {aEnviar && <Loader2 className="h-4 w-4 animate-spin" />}
             Criar conta
           </Button>
+
+          <p className="text-center text-xs text-muted-foreground">
+            Ao criar conta, aceitas a nossa{" "}
+            <Link href="/privacidade" className="font-medium underline hover:text-foreground">
+              Política de Privacidade
+            </Link>
+            .
+          </p>
         </form>
       </Form>
     </AuthShell>
