@@ -1,5 +1,20 @@
 import Link from "next/link"
-import { Wrench } from "lucide-react"
+import {
+  ShieldCheck,
+  Clock,
+  BadgeEuro,
+  Star,
+  Zap,
+  Hammer,
+  Wifi,
+} from "lucide-react"
+import { Logo } from "@/components/brand/logo"
+
+const VANTAGENS = [
+  { icon: Clock, texto: "Resposta rápida da nossa equipa" },
+  { icon: ShieldCheck, texto: "Profissionais de confiança" },
+  { icon: BadgeEuro, texto: "Sem surpresas no preço" },
+]
 
 export function AuthShell({
   title,
@@ -13,24 +28,64 @@ export function AuthShell({
   footer?: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-10">
-      <Link
-        href="/"
-        className="mb-6 flex items-center gap-2 text-domain-blue font-bold text-xl"
-      >
-        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-domain-blue text-domain-blue-foreground">
-          <Wrench className="h-5 w-5" />
-        </span>
-        BTS
-      </Link>
-      <div className="w-full max-w-sm rounded-xl border bg-card p-6 shadow-sm sm:p-8">
-        <div className="mb-6 space-y-1 text-center">
-          <h1 className="text-xl font-semibold tracking-tight">{title}</h1>
-          <p className="text-sm text-muted-foreground">{description}</p>
+    <div className="flex min-h-screen bg-muted/30">
+      {/* Painel de marca — só em ecrãs largos */}
+      <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-brand-navy p-10 text-brand-navy-foreground lg:flex">
+        <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-gold/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-brand-teal/20 blur-3xl" />
+        <div className="pointer-events-none absolute right-10 top-1/3 text-white/10">
+          <Zap className="h-20 w-20" />
         </div>
-        {children}
+        <div className="pointer-events-none absolute bottom-20 right-24 text-white/10">
+          <Hammer className="h-16 w-16" />
+        </div>
+        <div className="pointer-events-none absolute bottom-40 left-16 text-white/10">
+          <Wifi className="h-14 w-14" />
+        </div>
+
+        <Logo tamanho="h-10" className="relative" />
+
+        <div className="relative space-y-6">
+          <div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
+              <Star className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
+              Soluções inteligentes, resultados excelentes
+            </span>
+            <h2 className="mt-4 max-w-sm text-2xl font-bold tracking-tight">
+              Serviços técnicos ao domicílio, sem complicações.
+            </h2>
+          </div>
+          <div className="space-y-3">
+            {VANTAGENS.map(({ icon: Icon, texto }) => (
+              <div key={texto} className="flex items-center gap-2.5 text-sm text-white/85">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10">
+                  <Icon className="h-3.5 w-3.5 text-brand-gold" />
+                </span>
+                {texto}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="relative text-xs text-white/50">
+          © {new Date().getFullYear()} BTS — Bizarro Total Solutions
+        </p>
       </div>
-      {footer && <div className="mt-6 text-sm text-muted-foreground">{footer}</div>}
+
+      {/* Formulário */}
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-10">
+        <Link href="/" className="mb-6 lg:hidden">
+          <Logo tamanho="h-10" />
+        </Link>
+        <div className="w-full max-w-sm rounded-xl border bg-card p-6 shadow-sm sm:p-8">
+          <div className="mb-6 space-y-1 text-center">
+            <h1 className="text-xl font-semibold tracking-tight">{title}</h1>
+            <p className="text-sm text-muted-foreground">{description}</p>
+          </div>
+          {children}
+        </div>
+        {footer && <div className="mt-6 text-sm text-muted-foreground">{footer}</div>}
+      </div>
     </div>
   )
 }

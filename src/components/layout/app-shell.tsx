@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { SignOutButton } from "@/components/layout/sign-out-button"
+import { Logo } from "@/components/brand/logo"
 import { DOMINIO_ICON_CLASSES, type NavGroup, type NavIconName } from "@/components/layout/nav-types"
 
 const ICONS: Record<NavIconName, LucideIcon> = {
@@ -137,11 +138,8 @@ export function AppShell({
     <div className="flex min-h-screen bg-muted/20">
       {/* Sidebar desktop */}
       <aside className="hidden w-64 shrink-0 flex-col border-r bg-card md:flex">
-        <div className="flex items-center gap-2 border-b px-4 py-4 font-bold text-domain-blue">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-domain-blue text-domain-blue-foreground">
-            <Wrench className="h-4 w-4" />
-          </span>
-          BTS
+        <div className="border-b px-4 py-4">
+          <Logo tamanho="h-8" />
         </div>
         <NavLinks groups={groups} />
         <div className="border-t p-3">
@@ -162,11 +160,8 @@ export function AppShell({
             />
             <SheetContent side="left" className="w-64 p-0">
               <SheetTitle className="sr-only">Menu</SheetTitle>
-              <div className="flex items-center gap-2 border-b px-4 py-4 font-bold text-domain-blue">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-domain-blue text-domain-blue-foreground">
-                  <Wrench className="h-4 w-4" />
-                </span>
-                BTS
+              <div className="border-b px-4 py-4">
+                <Logo tamanho="h-8" />
               </div>
               <NavLinks groups={groups} onNavigate={() => setAberto(false)} />
               <div className="border-t p-3">
@@ -174,7 +169,7 @@ export function AppShell({
               </div>
             </SheetContent>
           </Sheet>
-          <span className="font-semibold text-domain-blue">BTS</span>
+          <Logo tamanho="h-7" />
           {titulo && <span className="ml-auto text-sm text-muted-foreground">{titulo}</span>}
         </header>
 

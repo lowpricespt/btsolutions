@@ -19,6 +19,18 @@
   --color-domain-purple: var(--domain-purple);
   --color-domain-purple-foreground: var(--domain-purple-foreground);
   --color-domain-purple-soft: var(--domain-purple-soft);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-foreground: var(--brand-navy-foreground);
+  --color-brand-navy-soft: var(--brand-navy-soft);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-foreground: var(--brand-gold-foreground);
+  --color-brand-gold-soft: var(--brand-gold-soft);
+  --color-brand-wood: var(--brand-wood);
+  --color-brand-wood-foreground: var(--brand-wood-foreground);
+  --color-brand-wood-soft: var(--brand-wood-soft);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-foreground: var(--brand-teal-foreground);
+  --color-brand-teal-soft: var(--brand-teal-soft);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -67,7 +79,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.546 0.215 262.9);
+  --primary: oklch(0.28 0.07 258);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -78,21 +90,21 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.546 0.215 262.9);
-  --chart-1: oklch(0.546 0.215 262.9);
+  --ring: oklch(0.28 0.07 258);
+  --chart-1: oklch(0.28 0.07 258);
   --chart-2: oklch(0.6 0.16 145);
   --chart-3: oklch(0.65 0.19 55);
   --chart-4: oklch(0.55 0.22 300);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.99 0.003 262.9);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.546 0.215 262.9);
+  --sidebar-primary: oklch(0.28 0.07 258);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.955 0.02 262.9);
-  --sidebar-accent-foreground: oklch(0.546 0.215 262.9);
+  --sidebar-accent-foreground: oklch(0.28 0.07 258);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.546 0.215 262.9);
+  --sidebar-ring: oklch(0.28 0.07 258);
 
   /* Paleta de domínio (alinhada com o ERD): azul = Utilizadores/Clientes,
      verde = Serviços/Operação, laranja = Recursos/Stock, roxo = Financeiro/Comunicação */
@@ -108,6 +120,23 @@
   --domain-purple: oklch(0.55 0.22 300);
   --domain-purple-foreground: oklch(0.985 0 0);
   --domain-purple-soft: oklch(0.94 0.04 300);
+
+  /* Paleta de marca (do logótipo BTS): azul-marinho = ação principal/confiança,
+     dourado = destaque/CTA, castanho-madeira = carpintaria/artesanal,
+     azul-elétrico = telecom/tecnologia. Usada nas páginas públicas
+     (landing, login, registo) para dar mais identidade e "vida" à marca. */
+  --brand-navy: oklch(0.28 0.07 258);
+  --brand-navy-foreground: oklch(0.985 0 0);
+  --brand-navy-soft: oklch(0.94 0.02 258);
+  --brand-gold: oklch(0.78 0.15 75);
+  --brand-gold-foreground: oklch(0.25 0.05 75);
+  --brand-gold-soft: oklch(0.96 0.04 80);
+  --brand-wood: oklch(0.48 0.09 50);
+  --brand-wood-foreground: oklch(0.985 0 0);
+  --brand-wood-soft: oklch(0.94 0.03 55);
+  --brand-teal: oklch(0.62 0.14 232);
+  --brand-teal-foreground: oklch(0.985 0 0);
+  --brand-teal-soft: oklch(0.94 0.03 232);
 }
 
 .dark {
@@ -117,7 +146,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.65 0.19 262.9);
+  --primary: oklch(0.72 0.1 258);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -128,20 +157,20 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.65 0.19 262.9);
-  --chart-1: oklch(0.65 0.19 262.9);
+  --ring: oklch(0.72 0.1 258);
+  --chart-1: oklch(0.72 0.1 258);
   --chart-2: oklch(0.65 0.15 145);
   --chart-3: oklch(0.7 0.17 55);
   --chart-4: oklch(0.65 0.19 300);
   --chart-5: oklch(0.708 0 0);
   --sidebar: oklch(0.19 0.01 262.9);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.65 0.19 262.9);
+  --sidebar-primary: oklch(0.72 0.1 258);
   --sidebar-primary-foreground: oklch(0.145 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.65 0.19 262.9);
+  --sidebar-ring: oklch(0.72 0.1 258);
 
   --domain-blue: oklch(0.65 0.19 262.9);
   --domain-blue-foreground: oklch(0.145 0 0);
@@ -155,6 +184,19 @@
   --domain-purple: oklch(0.65 0.19 300);
   --domain-purple-foreground: oklch(0.145 0 0);
   --domain-purple-soft: oklch(0.28 0.06 300);
+
+  --brand-navy: oklch(0.72 0.1 258);
+  --brand-navy-foreground: oklch(0.145 0 0);
+  --brand-navy-soft: oklch(0.28 0.04 258);
+  --brand-gold: oklch(0.78 0.15 75);
+  --brand-gold-foreground: oklch(0.2 0.04 75);
+  --brand-gold-soft: oklch(0.3 0.06 75);
+  --brand-wood: oklch(0.62 0.1 50);
+  --brand-wood-foreground: oklch(0.145 0 0);
+  --brand-wood-soft: oklch(0.3 0.05 50);
+  --brand-teal: oklch(0.68 0.13 232);
+  --brand-teal-foreground: oklch(0.145 0 0);
+  --brand-teal-soft: oklch(0.28 0.05 232);
 }
 
 @layer base {
