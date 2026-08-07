@@ -43,6 +43,21 @@ SUPABASE_SERVICE_ROLE_KEY=
 
 Sem a `SUPABASE_SERVICE_ROLE_KEY`, tudo o resto da app funciona normalmente — só a criação de contas (`/admin/utilizadores/novo`, "Novo cliente" em `/equipa/clientes` ou `/admin/clientes`) mostra um erro claro a pedir a chave em vez de falhar em silêncio.
 
+Para receber email sempre que um cliente cria um pedido, adiciona também:
+
+```bash
+# Notifica todos os administradores por email quando um pedido é criado.
+# Obtém/gere em resend.com/api-keys (grátis até 3000 emails/mês).
+RESEND_API_KEY=
+
+# Opcional — remetente por omissão usa o domínio de testes da Resend
+# (onboarding@resend.dev, funciona sem verificação). Troca depois de
+# verificar o domínio próprio na Resend.
+RESEND_FROM_EMAIL=
+```
+
+Sem `RESEND_API_KEY`, o pedido continua a ser criado normalmente — só o email de notificação não é enviado (o erro fica só nos logs do servidor).
+
 ### 3. Correr o servidor de desenvolvimento
 
 ```bash
@@ -96,6 +111,9 @@ src/
 - **Log de Atividade**: a tabela `log_atividade` não tinha nenhum trigger automático — a app regista explicitamente as ações mais significativas (mudar estado de um pedido, transformar em trabalho, agendar, criar contas, ativar/desativar contas) através de `src/lib/registar-atividade.ts`.
 - **shadcn/ui com Base UI**: esta instalação do `shadcn` gera componentes sobre `@base-ui/react`, não `@radix-ui`. Isto significa: usar a prop `render` para composição (`<Button render={<Link .../>} />`) em vez de `asChild`; `<SelectValue>` precisa de uma função `children` para mostrar o rótulo em vez do valor em bruto quando o valor não é já o texto legível.
 - **Restrição de edição de clientes por RLS**: um funcionário pode editar os dados de faturação de um cliente (tabela `clientes`), mas não o nome/telefone/morada (tabela `utilizadores`) — só um administrador ou o próprio cliente podem alterar esses campos. A UI reflete isto (campos de contacto ficam desativados para funcionários).
+- **Distrito em vez de localidade livre**: `utilizadores.localidade` passou a ser preenchida a partir de uma lista fixa dos distritos de Portugal (`src/lib/distritos.ts`), tanto no auto-registo (`/registo`) como no formulário de cliente usado pela equipa/admin — sem migração de esquema, é a mesma coluna.
+- **Validação de NIF e código postal**: `src/lib/validacao.ts` tem `validarNIF` (dígito de controlo módulo 11) e `CODIGO_POSTAL_REGEX` (`0000-000`), usados via `.refine()` do zod em todos os formulários que pedem estes campos. No auto-registo, morada/código postal/distrito/NIF são obrigatórios (para não ficarem clientes com dados incompletos); no formulário usado pela equipa/admin mantêm-se opcionais mas validados quando preenchidos.
+- **Notificação por email em novo pedido**: `POST /api/pedidos/criar` cria o pedido com a sessão do próprio cliente (a RLS já exige `id_cliente = auth.uid()`) e depois usa a `service_role` só para ler os emails dos administradores ativos (a RLS de `utilizadores` não deixa um cliente listar outras contas) e enviar-lhes um email via Resend (`src/lib/resend.ts`) com os detalhes do pedido e um link direto para `/admin/pedidos/{id}`. Falha a enviar o email não impede a criação do pedido — fica só registada nos logs do servidor.
 
 ## Deploy
 

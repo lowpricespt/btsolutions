@@ -9,6 +9,8 @@ import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
 import { createClient } from "@/lib/supabase/client"
+import { CODIGO_POSTAL_REGEX, validarNIF } from "@/lib/validacao"
+import { DISTRITOS } from "@/lib/distritos"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -29,20 +31,33 @@ import {
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 
-const schema = z.object({
-  nome: z.string().min(2, "Indica o nome"),
-  email: z.string().min(1, "Indica o email").email("Email inválido"),
-  telefone: z.string().optional(),
-  morada: z.string().optional(),
-  codigo_postal: z.string().optional(),
-  localidade: z.string().optional(),
-  nif: z.string().optional(),
-  tipo_cliente: z.enum(["particular", "empresa"]),
-  nome_empresa: z.string().optional(),
-  morada_faturacao: z.string().optional(),
-  codigo_postal_faturacao: z.string().optional(),
-  observacoes: z.string().optional(),
-})
+const schema = z
+  .object({
+    nome: z.string().min(2, "Indica o nome"),
+    email: z.string().min(1, "Indica o email").email("Email inválido"),
+    telefone: z.string().optional(),
+    morada: z.string().optional(),
+    codigo_postal: z.string().optional(),
+    localidade: z.string().optional(),
+    nif: z.string().optional(),
+    tipo_cliente: z.enum(["particular", "empresa"]),
+    nome_empresa: z.string().optional(),
+    morada_faturacao: z.string().optional(),
+    codigo_postal_faturacao: z.string().optional(),
+    observacoes: z.string().optional(),
+  })
+  .refine((v) => !v.codigo_postal || CODIGO_POSTAL_REGEX.test(v.codigo_postal), {
+    message: "Formato inválido — usa 0000-000",
+    path: ["codigo_postal"],
+  })
+  .refine((v) => !v.codigo_postal_faturacao || CODIGO_POSTAL_REGEX.test(v.codigo_postal_faturacao), {
+    message: "Formato inválido — usa 0000-000",
+    path: ["codigo_postal_faturacao"],
+  })
+  .refine((v) => !v.nif || validarNIF(v.nif), {
+    message: "NIF inválido",
+    path: ["nif"],
+  })
 
 type ClienteExistente = {
   id: string
@@ -215,10 +230,27 @@ export function ClienteForm({
               name="localidade"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Localidade</FormLabel>
-                  <FormControl>
-                    <Input disabled={!!clienteExistente && !podeEditarUtilizador} {...field} />
-                  </FormControl>
+                  <FormLabel>Distrito</FormLabel>
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    disabled={!!clienteExistente && !podeEditarUtilizador}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Escolhe o distrito">
+                          {(value: string | null) => value || ""}
+                        </SelectValue>
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {DISTRITOS.map((d) => (
+                        <SelectItem key={d} value={d}>
+                          {d}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

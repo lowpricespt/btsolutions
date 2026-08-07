@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Loader2 } from "lucide-react"
 
-import { createClient } from "@/lib/supabase/client"
 import { PRIORIDADE } from "@/lib/labels"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -68,22 +67,11 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
   async function onSubmit(values: z.infer<typeof schema>) {
     setErro(null)
     setAEnviar(true)
-    const supabase = createClient()
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      setErro("A tua sessão expirou. Entra novamente.")
-      setAEnviar(false)
-      return
-    }
-
-    const { data, error } = await supabase
-      .from("pedidos")
-      .insert({
-        id_cliente: user.id,
+    const resposta = await fetch("/api/pedidos/criar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         id_tipo_servico: Number(values.id_tipo_servico),
         titulo: values.titulo,
         descricao: values.descricao || null,
@@ -91,17 +79,17 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
         codigo_postal_servico: values.codigo_postal_servico || null,
         data_pretendida: values.data_pretendida || null,
         prioridade: values.prioridade,
-      })
-      .select("id")
-      .single()
+      }),
+    })
+    const dados = await resposta.json()
 
-    if (error || !data) {
-      setErro(error?.message ?? "Não foi possível criar o pedido.")
+    if (!resposta.ok) {
+      setErro(dados.erro ?? "Não foi possível criar o pedido.")
       setAEnviar(false)
       return
     }
 
-    router.push(`/cliente/pedidos/${data.id}`)
+    router.push(`/cliente/pedidos/${dados.id}`)
     router.refresh()
   }
 

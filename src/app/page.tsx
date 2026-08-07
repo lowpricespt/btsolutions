@@ -110,21 +110,6 @@ export default function LandingPage() {
 
   return (
     <div className="flex min-h-screen flex-1 flex-col bg-background">
-      {/* Barra de contacto */}
-      <div className="hidden bg-brand-navy px-4 py-1.5 text-xs text-white/80 sm:block">
-        <div className="mx-auto flex max-w-6xl items-center justify-end gap-5 sm:px-8">
-          <a href={CONTACTO.telefoneHref} className="flex items-center gap-1.5 hover:text-white">
-            <Phone className="h-3 w-3" /> {CONTACTO.telefone}
-          </a>
-          <a href={`mailto:${CONTACTO.email}`} className="flex items-center gap-1.5 hover:text-white">
-            <Mail className="h-3 w-3" /> {CONTACTO.email}
-          </a>
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-3 w-3" /> {CONTACTO.morada}
-          </span>
-        </div>
-      </div>
-
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-8">
           <Logo tamanho="h-10" />
