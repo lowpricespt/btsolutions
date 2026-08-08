@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Wrench } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -22,10 +23,11 @@ export function Logo({
 
   if (!falhou) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
+      <Image
         src="/logo.png"
         alt="BTS — Bizarro Total Solutions"
+        width={160}
+        height={160}
         className={cn(tamanho, "w-auto object-contain", className)}
         onError={() => setFalhou(true)}
       />
