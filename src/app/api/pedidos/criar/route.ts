@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 import { createAdminClient } from "@/lib/supabase/admin"
-import { enviarEmail } from "@/lib/resend"
+import { enviarEmail, escaparHtml } from "@/lib/resend"
 import { PRIORIDADE } from "@/lib/labels"
 
 type CorpoPedido = {
@@ -74,11 +74,11 @@ export async function POST(request: Request) {
         html: `
           <div style="font-family: sans-serif; max-width: 480px;">
             <h2 style="color: #1c2b4a;">Novo pedido de serviço</h2>
-            <p><strong>Cliente:</strong> ${cliente?.nome ?? "—"}</p>
-            <p><strong>Serviço:</strong> ${tipoServico ?? "—"}</p>
-            <p><strong>Título:</strong> ${corpo.titulo}</p>
-            <p><strong>Morada:</strong> ${corpo.morada_servico}</p>
-            <p><strong>Prioridade:</strong> ${PRIORIDADE[corpo.prioridade]?.label ?? corpo.prioridade}</p>
+            <p><strong>Cliente:</strong> ${escaparHtml(cliente?.nome ?? "—")}</p>
+            <p><strong>Serviço:</strong> ${escaparHtml(tipoServico ?? "—")}</p>
+            <p><strong>Título:</strong> ${escaparHtml(corpo.titulo)}</p>
+            <p><strong>Morada:</strong> ${escaparHtml(corpo.morada_servico)}</p>
+            <p><strong>Prioridade:</strong> ${escaparHtml(PRIORIDADE[corpo.prioridade]?.label ?? corpo.prioridade)}</p>
             <p style="margin-top: 24px;">
               <a href="${linkAdmin}" style="background: #c9a227; color: #1c2b4a; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600;">
                 Ver pedido

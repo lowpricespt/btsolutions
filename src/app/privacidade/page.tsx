@@ -109,7 +109,22 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">9. Alterações a esta política</h2>
+            <h2 className="text-lg font-semibold text-foreground">9. Cookies</h2>
+            <p className="mt-2">
+              Usamos apenas cookies estritamente necessários ao funcionamento da plataforma — em
+              concreto, um cookie de sessão que mantém a tua conta autenticada enquanto navegas.
+              Sem este cookie não é possível manteres a sessão iniciada.
+            </p>
+            <p className="mt-2">
+              Não usamos cookies de publicidade, de rastreio de terceiros, nem ferramentas de
+              análise que identifiquem a tua navegação. Como estes cookies são essenciais ao
+              serviço, não é possível desativá-los mantendo o acesso à tua conta — mas nunca são
+              usados para outro fim que não o de te manteres autenticado em segurança.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-semibold text-foreground">10. Alterações a esta política</h2>
             <p className="mt-2">
               Podemos atualizar esta política periodicamente. A data da última atualização está
               indicada no topo desta página.
@@ -117,7 +132,7 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">10. Contactos</h2>
+            <h2 className="text-lg font-semibold text-foreground">11. Contactos</h2>
             <p className="mt-2">
               Para questões relacionadas com privacidade e proteção de dados, contacta-nos através
               de {CONTACTO.email} ou {CONTACTO.telefone}.

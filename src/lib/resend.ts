@@ -1,5 +1,20 @@
 import "server-only"
 
+const ENTIDADES_HTML: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+}
+
+// Escapa texto de origem do utilizador antes de o inserir em HTML de email
+// (ex.: título/morada de um pedido) — sem isto, um cliente podia injetar
+// HTML/scripts no email que o admin recebe.
+export function escaparHtml(texto: string): string {
+  return texto.replace(/[&<>"']/g, (c) => ENTIDADES_HTML[c])
+}
+
 /**
  * Envio de email transacional via Resend. Requer RESEND_API_KEY (server-only).
  * Sem domínio próprio verificado, o remetente por omissão usa o domínio de
