@@ -160,7 +160,17 @@ export async function PedidoDetalheStaff({
       <section className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-medium">Trabalho</h2>
-          {!trabalho && <CriarTrabalhoButton pedidoId={pedidoId} />}
+          {!trabalho && (
+            <div className="flex items-center gap-2">
+              <CriarTrabalhoButton pedidoId={pedidoId} />
+              <AgendarTrabalhoDialog
+                idTrabalho={null}
+                pedidoId={pedidoId}
+                funcionarios={listaFuncionarios}
+                funcionarioSugerido={null}
+              />
+            </div>
+          )}
         </div>
         {trabalho ? (
           <div className="space-y-4 rounded-xl border bg-card p-4">
@@ -172,6 +182,7 @@ export async function PedidoDetalheStaff({
                 </Link>
                 <AgendarTrabalhoDialog
                   idTrabalho={trabalho.id}
+                  pedidoId={pedidoId}
                   funcionarios={listaFuncionarios}
                   funcionarioSugerido={trabalho.id_funcionario_responsavel}
                 />
@@ -187,7 +198,8 @@ export async function PedidoDetalheStaff({
           </div>
         ) : (
           <p className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-            Este pedido ainda não foi transformado em trabalho.
+            Ainda sem trabalho — clica em "Agendar" para criar e marcar logo a data, ou "Transformar em
+            trabalho" se quiseres só anexar fotos primeiro.
           </p>
         )}
       </section>

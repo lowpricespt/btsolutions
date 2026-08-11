@@ -29,10 +29,14 @@ type Funcionario = { id: string; nome: string }
 
 export function AgendarTrabalhoDialog({
   idTrabalho,
+  pedidoId,
   funcionarios,
   funcionarioSugerido,
 }: {
-  idTrabalho: number
+  // Se ainda não houver trabalho para este pedido, passa null — o trabalho
+  // é criado automaticamente ao agendar, num só passo.
+  idTrabalho: number | null
+  pedidoId: number
   funcionarios: Funcionario[]
   funcionarioSugerido: string | null
 }) {
@@ -58,8 +62,35 @@ export function AgendarTrabalhoDialog({
 
     setAGuardar(true)
     const supabase = createClient()
+
+    let trabalhoId = idTrabalho
+    if (!trabalhoId) {
+      const { data: novoTrabalho, error: erroTrabalho } = await supabase
+        .from("trabalhos")
+        .insert({ id_pedido: pedidoId, id_funcionario_responsavel: funcionarioId })
+        .select("id")
+        .single()
+
+      if (erroTrabalho || !novoTrabalho) {
+        toast.error("Não foi possível criar o trabalho.")
+        setAGuardar(false)
+        return
+      }
+      trabalhoId = novoTrabalho.id
+      registarAtividade("Transformou pedido em trabalho", "pedidos", pedidoId)
+
+      const { data: pedidoAtual } = await supabase
+        .from("pedidos")
+        .select("estado")
+        .eq("id", pedidoId)
+        .single()
+      if (pedidoAtual?.estado === "pendente") {
+        await supabase.from("pedidos").update({ estado: "aprovado" }).eq("id", pedidoId)
+      }
+    }
+
     const { error } = await supabase.from("agenda").insert({
-      id_trabalho: idTrabalho,
+      id_trabalho: trabalhoId,
       id_funcionario: funcionarioId,
       data_hora_inicio: inicio.toISOString(),
       data_hora_fim: fim.toISOString(),
@@ -71,14 +102,14 @@ export function AgendarTrabalhoDialog({
       return
     }
     toast.success("Trabalho agendado.")
-    registarAtividade("Agendou um trabalho", "trabalhos", idTrabalho)
+    registarAtividade("Agendou um trabalho", "trabalhos", trabalhoId)
     setAberto(false)
     router.refresh()
   }
 
   return (
     <>
-      <Button size="sm" variant="outline" onClick={() => setAberto(true)}>
+      <Button size="sm" variant={idTrabalho ? "outline" : "default"} onClick={() => setAberto(true)}>
         <CalendarPlus className="h-4 w-4" />
         Agendar
       </Button>
