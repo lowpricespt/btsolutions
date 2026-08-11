@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 import { createAdminClient } from "@/lib/supabase/admin"
-import { enviarEmail, escaparHtml } from "@/lib/resend"
+import { enviarEmail, escaparHtml } from "@/lib/email"
 import { PRIORIDADE } from "@/lib/labels"
 
 type CorpoPedido = {
