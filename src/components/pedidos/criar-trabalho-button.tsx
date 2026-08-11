@@ -21,9 +21,18 @@ export function CriarTrabalhoButton({ pedidoId }: { pedidoId: number }) {
       data: { user },
     } = await supabase.auth.getUser()
 
+    // id_funcionario_responsavel só pode apontar para uma linha em
+    // "funcionarios" — quem cria o trabalho pode ser um administrador (não
+    // tem linha ali), por isso só nos auto-atribuímos se formos mesmo um
+    // funcionário. Caso contrário fica por atribuir e escolhe-se no diálogo
+    // de agendamento.
+    const { data: funcionario } = user
+      ? await supabase.from("funcionarios").select("id").eq("id", user.id).maybeSingle()
+      : { data: null }
+
     const { error } = await supabase.from("trabalhos").insert({
       id_pedido: pedidoId,
-      id_funcionario_responsavel: user?.id ?? null,
+      id_funcionario_responsavel: funcionario?.id ?? null,
     })
 
     if (error) {
