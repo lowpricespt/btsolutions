@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 import { Logo } from "@/components/brand/logo"
 import { CONTACTO } from "@/lib/contacto"
 
@@ -12,136 +13,103 @@ export const metadata = {
   },
 }
 
-export default function PrivacidadePage() {
+export default async function PrivacidadePage() {
+  const t = await getTranslations("Privacidade")
+  const s2Lista = t.raw("s2.lista") as string[]
+  const s3Lista = t.raw("s3.lista") as string[]
+  const s7Lista = t.raw("s7.lista") as string[]
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="border-b bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4 sm:px-8">
           <Logo tamanho="h-9" />
           <Link href="/" className="flex items-center gap-1.5 text-sm font-medium text-foreground/70 hover:text-foreground">
-            <ArrowLeft className="h-4 w-4" /> Voltar
+            <ArrowLeft className="h-4 w-4" /> {t("voltar")}
           </Link>
         </div>
       </header>
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-8">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Política de Privacidade</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Última atualização: agosto de 2026</p>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("titulo")}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{t("ultimaAtualizacao")}</p>
 
         <div className="mt-8 space-y-8 text-sm leading-relaxed text-foreground/90">
           <section>
-            <h2 className="text-lg font-semibold text-foreground">1. Quem somos</h2>
-            <p className="mt-2">
-              A BTS — Bizarro Total Solutions (&ldquo;nós&rdquo;, &ldquo;a nossa empresa&rdquo;) presta serviços técnicos ao
-              domicílio (eletricidade, telecomunicações, carpintaria e outros). Esta plataforma
-              permite a clientes pedir serviços e acompanhar o respetivo estado.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s1.titulo")}</h2>
+            <p className="mt-2">{t("s1.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">2. Que dados recolhemos</h2>
-            <p className="mt-2">Recolhemos apenas os dados necessários para prestar o serviço:</p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s2.titulo")}</h2>
+            <p className="mt-2">{t("s2.intro")}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Dados de identificação: nome, email e telefone.</li>
-              <li>Dados de morada, quando necessários para deslocação de um técnico.</li>
-              <li>Detalhes dos pedidos de serviço: descrição, fotografias/anexos, comentários e histórico.</li>
-              <li>Dados de faturação, quando aplicável.</li>
+              {s2Lista.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">3. Para que usamos os dados</h2>
+            <h2 className="text-lg font-semibold text-foreground">{t("s3.titulo")}</h2>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Gerir a tua conta e autenticação na plataforma.</li>
-              <li>Processar e acompanhar os teus pedidos de serviço.</li>
-              <li>Comunicar contigo sobre agendamentos, orçamentos e faturas.</li>
-              <li>Cumprir obrigações legais e fiscais.</li>
+              {s3Lista.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">4. Base legal</h2>
-            <p className="mt-2">
-              Tratamos os teus dados com base na execução do contrato de prestação de serviços entre
-              ti e a BTS, no teu consentimento (quando aplicável) e no cumprimento de obrigações
-              legais, nos termos do Regulamento Geral de Proteção de Dados (RGPD).
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s4.titulo")}</h2>
+            <p className="mt-2">{t("s4.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">5. Partilha de dados</h2>
-            <p className="mt-2">
-              Não vendemos nem partilhamos os teus dados com terceiros para fins de marketing. Os
-              teus dados são armazenados em infraestrutura de terceiros de confiança (fornecedor de
-              base de dados e alojamento) que atuam como subcontratantes, apenas para efeitos de
-              funcionamento técnico da plataforma.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s5.titulo")}</h2>
+            <p className="mt-2">{t("s5.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">6. Quanto tempo guardamos os dados</h2>
-            <p className="mt-2">
-              Mantemos os teus dados enquanto a tua conta estiver ativa e pelo período adicional
-              exigido por obrigações legais e fiscais. Podes pedir a eliminação da tua conta a
-              qualquer momento através dos contactos abaixo.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s6.titulo")}</h2>
+            <p className="mt-2">{t("s6.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">7. Os teus direitos</h2>
-            <p className="mt-2">Nos termos do RGPD, tens direito a:</p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s7.titulo")}</h2>
+            <p className="mt-2">{t("s7.intro")}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Aceder aos dados que temos sobre ti.</li>
-              <li>Solicitar a retificação de dados incorretos.</li>
-              <li>Solicitar o apagamento dos teus dados (&ldquo;direito ao esquecimento&rdquo;).</li>
-              <li>Opor-te ao tratamento ou solicitar a limitação do mesmo.</li>
-              <li>Solicitar a portabilidade dos teus dados.</li>
+              {s7Lista.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
             <p className="mt-2">
-              Para exercer qualquer um destes direitos, contacta-nos através do email{" "}
+              {t("s7.contacta")}{" "}
               <a href={`mailto:${CONTACTO.email}`} className="font-medium text-brand-navy hover:underline dark:text-brand-gold">
                 {CONTACTO.email}
-              </a>.
+              </a>
+              .
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">8. Segurança</h2>
-            <p className="mt-2">
-              Aplicamos medidas técnicas e organizativas adequadas para proteger os teus dados,
-              incluindo controlo de acessos por perfil de utilizador e encriptação nas comunicações.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s8.titulo")}</h2>
+            <p className="mt-2">{t("s8.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">9. Cookies</h2>
-            <p className="mt-2">
-              Usamos apenas cookies estritamente necessários ao funcionamento da plataforma — em
-              concreto, um cookie de sessão que mantém a tua conta autenticada enquanto navegas.
-              Sem este cookie não é possível manteres a sessão iniciada.
-            </p>
-            <p className="mt-2">
-              Não usamos cookies de publicidade, de rastreio de terceiros, nem ferramentas de
-              análise que identifiquem a tua navegação. Como estes cookies são essenciais ao
-              serviço, não é possível desativá-los mantendo o acesso à tua conta — mas nunca são
-              usados para outro fim que não o de te manteres autenticado em segurança.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s9.titulo")}</h2>
+            <p className="mt-2">{t("s9.p1")}</p>
+            <p className="mt-2">{t("s9.p2")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">10. Alterações a esta política</h2>
-            <p className="mt-2">
-              Podemos atualizar esta política periodicamente. A data da última atualização está
-              indicada no topo desta página.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s10.titulo")}</h2>
+            <p className="mt-2">{t("s10.p1")}</p>
           </section>
 
           <section>
-            <h2 className="text-lg font-semibold text-foreground">11. Contactos</h2>
-            <p className="mt-2">
-              Para questões relacionadas com privacidade e proteção de dados, contacta-nos através
-              de {CONTACTO.email} ou {CONTACTO.telefone}.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{t("s11.titulo")}</h2>
+            <p className="mt-2">{t("s11.p1", { email: CONTACTO.email, telefone: CONTACTO.telefone })}</p>
           </section>
         </div>
       </main>

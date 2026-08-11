@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -24,9 +25,11 @@ const nextConfig: NextConfig = {
   },
 };
 
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 // Sem SENTRY_AUTH_TOKEN não é feito upload de source maps — os erros chegam
 // na mesma ao Sentry, só que com stack traces minificados. Adicionar um
 // auth token (sentry.io -> Settings -> Auth Tokens) mais tarde ativa isso.
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(withNextIntl(nextConfig), {
   silent: true,
 });

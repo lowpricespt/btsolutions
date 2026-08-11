@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-export function SignOutButton({ className }: { className?: string }) {
+export function SignOutButton({ className, label = "Terminar sessão" }: { className?: string; label?: string }) {
   const [aSair, setASair] = useState(false)
 
   async function sair() {
@@ -30,7 +30,7 @@ export function SignOutButton({ className }: { className?: string }) {
       )}
     >
       {aSair ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogOut className="h-4 w-4" />}
-      Terminar sessão
+      {label}
     </Button>
   )
 }

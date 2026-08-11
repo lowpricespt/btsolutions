@@ -1,0 +1,315 @@
+{
+  "Landing": {
+    "nav": {
+      "servicos": "Serviços",
+      "comoFunciona": "Como funciona",
+      "confianca": "Porque escolher-nos",
+      "contacto": "Contacto"
+    },
+    "entrar": "Entrar",
+    "criarConta": "Criar conta",
+    "hero": {
+      "badge": "Trabalho sério · preço justo · garantia total",
+      "titulo": "Serviços técnicos ao domicílio,",
+      "tituloDestaque": "sem complicações",
+      "texto": "Eletricidade, carpintaria, telecomunicações e muito mais. Pede um serviço, acompanha o estado do pedido e fala com a nossa equipa — tudo numa só plataforma.",
+      "pedirServico": "Pedir um serviço",
+      "jaSouCliente": "Já sou cliente"
+    },
+    "vantagens": [
+      { "valor": "< 24H", "titulo": "Resposta rápida", "texto": "Respondemos a todos os pedidos em dias úteis — mais rápido via WhatsApp." },
+      { "valor": "12 MESES", "titulo": "Garantia total", "texto": "Em instalações — 6 meses em reparações." },
+      { "valor": "0€", "titulo": "Orçamento grátis", "texto": "Sem surpresas no preço, sem compromisso." }
+    ],
+    "comoFunciona": {
+      "titulo": "Como funciona",
+      "subtitulo": "Do pedido à conclusão do trabalho, em três passos simples.",
+      "passos": [
+        { "titulo": "Pedes o serviço", "texto": "Escolhes a especialidade, descreves o que precisas e a morada — leva menos de um minuto." },
+        { "titulo": "Agendamos um profissional", "texto": "Respondemos a todos os pedidos em 24h e enviamos um técnico qualificado." },
+        { "titulo": "Acompanhas tudo online", "texto": "Vês o estado do pedido, falas com a equipa, recebes a fatura e avalias o serviço." }
+      ]
+    },
+    "servicos": {
+      "titulo": "As nossas especialidades",
+      "subtitulo": "Uma equipa, todas as competências que a tua casa precisa.",
+      "lista": [
+        { "nome": "Eletricidade", "texto": "Instalações, quadros elétricos, reparações, certificações ITED/ITUR e iluminação LED." },
+        { "nome": "Telecomunicações", "texto": "CCTV, alarmes, redes estruturadas, fibra ótica, controlo de acessos e domótica." },
+        { "nome": "Carpintaria", "texto": "Mobiliário à medida, roupeiros embutidos, pavimentos e decks exteriores." },
+        { "nome": "Montagem de Móveis", "texto": "Montagem rápida e cuidada de qualquer mobiliário." },
+        { "nome": "Exaustores", "texto": "Instalação e manutenção de exaustores de cozinha." },
+        { "nome": "Montagem de TV / Som", "texto": "Fixação de TV, colunas e sistemas de som." },
+        { "nome": "Estendais", "texto": "Instalação de estendais elétricos e manuais." },
+        { "nome": "Pintura", "texto": "Pintura de interiores e exteriores com acabamento profissional." },
+        { "nome": "Serviços Gerais", "texto": "Pequenas reparações e manutenção geral da casa." }
+      ]
+    },
+    "confianca": {
+      "titulo": "Porque escolher a BTS",
+      "subtitulo": "Soluções inteligentes, resultados excelentes — é assim que trabalhamos.",
+      "lista": [
+        { "titulo": "Trabalho sério, preço justo", "texto": "Equipa própria, qualificada em cada área, com garantia incluída." },
+        { "titulo": "Área de atuação alargada", "texto": "Grande Porto, Braga, Aveiro e arredores — raio de cerca de 100 km." },
+        { "titulo": "Pagamento fácil", "texto": "Transferência, MB Way/Multibanco ou dinheiro. Obras maiores podem ser faseadas." }
+      ]
+    },
+    "contacto": {
+      "titulo": "Fala connosco",
+      "subtitulo": "Estamos disponíveis por telefone, WhatsApp ou email. Orçamento grátis e sem compromisso.",
+      "whatsapp": "WhatsApp",
+      "telefone": "Telefone",
+      "email": "Email",
+      "area": "atendemos toda a área metropolitana do Porto, Braga e Aveiro"
+    },
+    "ctaFinal": {
+      "titulo": "Precisas de um técnico? Estamos a um pedido de distância.",
+      "texto": "Cria a tua conta gratuita e faz o teu primeiro pedido em menos de dois minutos.",
+      "botao": "Criar conta grátis"
+    },
+    "footer": {
+      "descricao": "Soluções inteligentes, resultados excelentes. Serviços técnicos ao domicílio na Grande Área do Porto, Braga e Aveiro.",
+      "direitos": "Todos os direitos reservados.",
+      "privacidade": "Política de Privacidade"
+    }
+  },
+  "Auth": {
+    "badge": "Soluções inteligentes, resultados excelentes",
+    "tagline": "Serviços técnicos ao domicílio, sem complicações.",
+    "vantagens": [
+      "Resposta rápida da nossa equipa",
+      "Profissionais de confiança",
+      "Sem surpresas no preço"
+    ]
+  },
+  "Login": {
+    "titulo": "Entrar",
+    "descricao": "Acede à tua conta BTS",
+    "email": "Email",
+    "password": "Palavra-passe",
+    "botao": "Entrar",
+    "semConta": "Ainda não tens conta?",
+    "criarConta": "Criar conta",
+    "erroCredenciais": "Email ou palavra-passe incorretos.",
+    "erroEmail": "Indica o email",
+    "erroEmailInvalido": "Email inválido",
+    "erroPassword": "Indica a palavra-passe"
+  },
+  "Registo": {
+    "titulo": "Criar conta",
+    "descricao": "Regista-te como cliente BTS",
+    "jaTensConta": "Já tens conta?",
+    "entrar": "Entrar",
+    "nome": "Nome",
+    "nomePlaceholder": "O teu nome",
+    "email": "Email",
+    "telefone": "Telefone",
+    "moradaFaturacao": "Morada e faturação",
+    "moradaFaturacaoDescricao": "Precisamos destes dados para agendar visitas e emitir faturas.",
+    "morada": "Morada",
+    "moradaPlaceholder": "Rua, número, andar",
+    "codigoPostal": "Código postal",
+    "distrito": "Distrito",
+    "escolheDistrito": "Escolhe o distrito",
+    "nif": "NIF",
+    "password": "Palavra-passe",
+    "confirmarPassword": "Confirmar palavra-passe",
+    "aceito": "Li e aceito a",
+    "politicaPrivacidade": "Política de Privacidade",
+    "botao": "Criar conta",
+    "confirmaEmailTitulo": "Confirma o teu email",
+    "confirmaEmailTexto": "Enviámos um link de confirmação para o teu email. Confirma a conta para poderes entrar.",
+    "voltarLogin": "Voltar ao login",
+    "erros": {
+      "contaExistente": "Já existe uma conta com este email.",
+      "nome": "Indica o teu nome",
+      "email": "Indica o email",
+      "emailInvalido": "Email inválido",
+      "telefone": "Indica um telefone válido",
+      "morada": "Indica a tua morada",
+      "codigoPostal": "Indica o código postal",
+      "codigoPostalFormato": "Formato inválido — usa 0000-000",
+      "distrito": "Escolhe o distrito",
+      "nif": "Indica o teu NIF",
+      "nifInvalido": "NIF inválido",
+      "password": "Mínimo de 6 caracteres",
+      "passwordDiferente": "As palavras-passe não coincidem",
+      "aceitaPrivacidade": "Tens de aceitar a Política de Privacidade para criares conta."
+    }
+  },
+  "Privacidade": {
+    "titulo": "Política de Privacidade",
+    "ultimaAtualizacao": "Última atualização: agosto de 2026",
+    "voltar": "Voltar",
+    "s1": {
+      "titulo": "1. Quem somos",
+      "p1": "A BTS — Bizarro Total Solutions (\"nós\", \"a nossa empresa\") presta serviços técnicos ao domicílio (eletricidade, telecomunicações, carpintaria e outros). Esta plataforma permite a clientes pedir serviços e acompanhar o respetivo estado."
+    },
+    "s2": {
+      "titulo": "2. Que dados recolhemos",
+      "intro": "Recolhemos apenas os dados necessários para prestar o serviço:",
+      "lista": [
+        "Dados de identificação: nome, email e telefone.",
+        "Dados de morada, quando necessários para deslocação de um técnico.",
+        "Detalhes dos pedidos de serviço: descrição, fotografias/anexos, comentários e histórico.",
+        "Dados de faturação, quando aplicável."
+      ]
+    },
+    "s3": {
+      "titulo": "3. Para que usamos os dados",
+      "lista": [
+        "Gerir a tua conta e autenticação na plataforma.",
+        "Processar e acompanhar os teus pedidos de serviço.",
+        "Comunicar contigo sobre agendamentos, orçamentos e faturas.",
+        "Cumprir obrigações legais e fiscais."
+      ]
+    },
+    "s4": {
+      "titulo": "4. Base legal",
+      "p1": "Tratamos os teus dados com base na execução do contrato de prestação de serviços entre ti e a BTS, no teu consentimento (quando aplicável) e no cumprimento de obrigações legais, nos termos do Regulamento Geral de Proteção de Dados (RGPD)."
+    },
+    "s5": {
+      "titulo": "5. Partilha de dados",
+      "p1": "Não vendemos nem partilhamos os teus dados com terceiros para fins de marketing. Os teus dados são armazenados em infraestrutura de terceiros de confiança (fornecedor de base de dados e alojamento) que atuam como subcontratantes, apenas para efeitos de funcionamento técnico da plataforma."
+    },
+    "s6": {
+      "titulo": "6. Quanto tempo guardamos os dados",
+      "p1": "Mantemos os teus dados enquanto a tua conta estiver ativa e pelo período adicional exigido por obrigações legais e fiscais. Podes pedir a eliminação da tua conta a qualquer momento através dos contactos abaixo."
+    },
+    "s7": {
+      "titulo": "7. Os teus direitos",
+      "intro": "Nos termos do RGPD, tens direito a:",
+      "lista": [
+        "Aceder aos dados que temos sobre ti.",
+        "Solicitar a retificação de dados incorretos.",
+        "Solicitar o apagamento dos teus dados (\"direito ao esquecimento\").",
+        "Opor-te ao tratamento ou solicitar a limitação do mesmo.",
+        "Solicitar a portabilidade dos teus dados."
+      ],
+      "contacta": "Para exercer qualquer um destes direitos, contacta-nos através do email"
+    },
+    "s8": {
+      "titulo": "8. Segurança",
+      "p1": "Aplicamos medidas técnicas e organizativas adequadas para proteger os teus dados, incluindo controlo de acessos por perfil de utilizador e encriptação nas comunicações."
+    },
+    "s9": {
+      "titulo": "9. Cookies",
+      "p1": "Usamos apenas cookies estritamente necessários ao funcionamento da plataforma — em concreto, um cookie de sessão que mantém a tua conta autenticada enquanto navegas. Sem este cookie não é possível manteres a sessão iniciada.",
+      "p2": "Não usamos cookies de publicidade, de rastreio de terceiros, nem ferramentas de análise que identifiquem a tua navegação. Como estes cookies são essenciais ao serviço, não é possível desativá-los mantendo o acesso à tua conta — mas nunca são usados para outro fim que não o de te manteres autenticado em segurança."
+    },
+    "s10": {
+      "titulo": "10. Alterações a esta política",
+      "p1": "Podemos atualizar esta política periodicamente. A data da última atualização está indicada no topo desta página."
+    },
+    "s11": {
+      "titulo": "11. Contactos",
+      "p1": "Para questões relacionadas com privacidade e proteção de dados, contacta-nos através de {email} ou {telefone}."
+    }
+  },
+  "Enums": {
+    "estadoPedido": {
+      "pendente": "Pendente",
+      "aprovado": "Aprovado",
+      "em_curso": "Em curso",
+      "concluido": "Concluído",
+      "cancelado": "Cancelado"
+    },
+    "prioridade": {
+      "baixa": "Baixa",
+      "normal": "Normal",
+      "alta": "Alta",
+      "urgente": "Urgente"
+    },
+    "estadoPagamento": {
+      "pendente": "Pendente",
+      "pago": "Pago",
+      "parcial": "Parcial"
+    },
+    "metodoPagamento": {
+      "mbway": "MB WAY",
+      "transferencia": "Transferência",
+      "multibanco": "Multibanco",
+      "numerario": "Numerário"
+    },
+    "tipoAnexo": {
+      "foto_antes": "Foto (antes)",
+      "foto_depois": "Foto (depois)",
+      "documento": "Documento"
+    }
+  },
+  "Cliente": {
+    "layout": {
+      "osMeusPedidos": "Os meus pedidos",
+      "novoPedido": "Novo pedido",
+      "perfilLabel": "Cliente",
+      "sairLabel": "Terminar sessão"
+    },
+    "dashboard": {
+      "titulo": "Os meus pedidos",
+      "subtitulo": "Acompanha o estado dos serviços que pediste à BTS.",
+      "novoPedido": "Novo pedido",
+      "pedidosAbertos": "Pedidos em aberto",
+      "totalPedidos": "Total de pedidos",
+      "bemVindo": "Bem-vindo à BTS!",
+      "semPedidosTexto": "Ainda não fizeste nenhum pedido. Diz-nos o que precisas e a nossa equipa entra em contacto contigo em menos de 24h.",
+      "pedirPrimeiro": "Pedir o primeiro serviço",
+      "servicoADefinir": "Serviço a definir",
+      "pedidoEm": "Pedido em {data}"
+    },
+    "novoPedido": {
+      "voltar": "Voltar",
+      "titulo": "Novo pedido",
+      "subtitulo": "Conta-nos o que precisas e a nossa equipa entra em contacto.",
+      "tipoServico": "Tipo de serviço",
+      "escolheServico": "Escolhe o serviço que precisas",
+      "tituloPedido": "Título do pedido",
+      "tituloPlaceholder": "Ex.: Substituir tomada da cozinha",
+      "descricao": "Descrição (opcional)",
+      "descricaoPlaceholder": "Explica com mais detalhe o que precisas",
+      "moradaServico": "Morada do serviço",
+      "moradaPlaceholder": "Rua, número, andar",
+      "codigoPostal": "Código postal",
+      "dataPretendida": "Data pretendida (opcional)",
+      "dataPretendidaDescricao": "Vamos tentar agendar o mais próximo possível.",
+      "prioridade": "Prioridade",
+      "botao": "Pedir serviço",
+      "erros": {
+        "tipoServico": "Escolhe o tipo de serviço",
+        "titulo": "Descreve brevemente o pedido",
+        "morada": "Indica a morada onde o serviço vai ser feito",
+        "generico": "Não foi possível criar o pedido."
+      }
+    },
+    "detalhe": {
+      "voltar": "Voltar",
+      "servicoADefinir": "Serviço a definir",
+      "pedidoEm": "Pedido em {data}",
+      "pretendidoPara": "pretendido para {data}",
+      "valorFinal": "Valor final: {valor}",
+      "orcamento": "Orçamento: {valor}",
+      "fatura": "Fatura",
+      "fotosDocumentos": "Fotos e documentos",
+      "aTuaAvaliacao": "A tua avaliação",
+      "comentarios": "Comentários"
+    },
+    "avaliacao": {
+      "titulo": "Como avalias este serviço?",
+      "comentarioPlaceholder": "Comentário (opcional)",
+      "botao": "Enviar avaliação",
+      "avaliadoEm": "Avaliado em {data}"
+    },
+    "comentarios": {
+      "placeholder": "Escreve um comentário…",
+      "botao": "Enviar",
+      "semComentarios": "Ainda não há comentários neste pedido.",
+      "tu": "Tu",
+      "equipaBts": "Equipa BTS"
+    },
+    "fatura": {
+      "emitidaEm": "Emitida em {data}"
+    },
+    "anexos": {
+      "semAnexos": "Ainda não há fotos ou documentos."
+    }
+  }
+}

@@ -7,7 +7,15 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Logo } from "@/components/brand/logo"
 
-export function MobileNav({ navLinks }: { navLinks: { href: string; label: string }[] }) {
+export function MobileNav({
+  navLinks,
+  entrarLabel,
+  criarContaLabel,
+}: {
+  navLinks: { href: string; label: string }[]
+  entrarLabel: string
+  criarContaLabel: string
+}) {
   const [menuAberto, setMenuAberto] = useState(false)
 
   return (
@@ -37,10 +45,10 @@ export function MobileNav({ navLinks }: { navLinks: { href: string; label: strin
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-2 border-t p-4">
-          <Button variant="outline" render={<Link href="/login">Entrar</Link>} />
+          <Button variant="outline" render={<Link href="/login">{entrarLabel}</Link>} />
           <Button
             className="bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
-            render={<Link href="/registo">Criar conta</Link>}
+            render={<Link href="/registo">{criarContaLabel}</Link>}
           />
         </div>
       </SheetContent>

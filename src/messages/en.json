@@ -1,0 +1,315 @@
+{
+  "Landing": {
+    "nav": {
+      "servicos": "Services",
+      "comoFunciona": "How it works",
+      "confianca": "Why choose us",
+      "contacto": "Contact"
+    },
+    "entrar": "Sign in",
+    "criarConta": "Create account",
+    "hero": {
+      "badge": "Serious work · fair prices · full warranty",
+      "titulo": "Home technical services,",
+      "tituloDestaque": "no hassle",
+      "texto": "Electrical, carpentry, telecommunications and much more. Request a service, track its status and talk to our team — all in one platform.",
+      "pedirServico": "Request a service",
+      "jaSouCliente": "I'm already a client"
+    },
+    "vantagens": [
+      { "valor": "< 24H", "titulo": "Fast response", "texto": "We respond to all requests on business days — even faster via WhatsApp." },
+      { "valor": "12 MONTHS", "titulo": "Full warranty", "texto": "On installations — 6 months on repairs." },
+      { "valor": "€0", "titulo": "Free quote", "texto": "No price surprises, no obligation." }
+    ],
+    "comoFunciona": {
+      "titulo": "How it works",
+      "subtitulo": "From request to completed job, in three simple steps.",
+      "passos": [
+        { "titulo": "Request the service", "texto": "Choose the specialty, describe what you need and the address — takes less than a minute." },
+        { "titulo": "We schedule a professional", "texto": "We respond to all requests within 24h and send a qualified technician." },
+        { "titulo": "Track everything online", "texto": "See the status of your request, talk to the team, get the invoice and rate the service." }
+      ]
+    },
+    "servicos": {
+      "titulo": "Our specialties",
+      "subtitulo": "One team, every skill your home needs.",
+      "lista": [
+        { "nome": "Electrical", "texto": "Installations, electrical panels, repairs, ITED/ITUR certifications and LED lighting." },
+        { "nome": "Telecommunications", "texto": "CCTV, alarms, structured networks, fiber optics, access control and home automation." },
+        { "nome": "Carpentry", "texto": "Custom furniture, built-in wardrobes, flooring and outdoor decks." },
+        { "nome": "Furniture Assembly", "texto": "Fast, careful assembly of any furniture." },
+        { "nome": "Extractor Fans", "texto": "Installation and maintenance of kitchen extractor fans." },
+        { "nome": "TV / Sound Mounting", "texto": "TV mounting, speakers and sound systems." },
+        { "nome": "Clotheslines", "texto": "Installation of electric and manual clotheslines." },
+        { "nome": "Painting", "texto": "Interior and exterior painting with a professional finish." },
+        { "nome": "General Services", "texto": "Small repairs and general home maintenance." }
+      ]
+    },
+    "confianca": {
+      "titulo": "Why choose BTS",
+      "subtitulo": "Smart solutions, excellent results — that's how we work.",
+      "lista": [
+        { "titulo": "Serious work, fair prices", "texto": "Our own team, qualified in every field, with warranty included." },
+        { "titulo": "Wide service area", "texto": "Greater Porto, Braga, Aveiro and surroundings — roughly a 100 km radius." },
+        { "titulo": "Easy payment", "texto": "Bank transfer, MB Way/Multibanco or cash. Larger jobs can be split into installments." }
+      ]
+    },
+    "contacto": {
+      "titulo": "Get in touch",
+      "subtitulo": "We're available by phone, WhatsApp or email. Free, no-obligation quote.",
+      "whatsapp": "WhatsApp",
+      "telefone": "Phone",
+      "email": "Email",
+      "area": "we cover the whole Porto, Braga and Aveiro metropolitan area"
+    },
+    "ctaFinal": {
+      "titulo": "Need a technician? We're just one request away.",
+      "texto": "Create your free account and make your first request in under two minutes.",
+      "botao": "Create free account"
+    },
+    "footer": {
+      "descricao": "Smart solutions, excellent results. Home technical services across the Greater Porto, Braga and Aveiro area.",
+      "direitos": "All rights reserved.",
+      "privacidade": "Privacy Policy"
+    }
+  },
+  "Auth": {
+    "badge": "Smart solutions, excellent results",
+    "tagline": "Home technical services, no hassle.",
+    "vantagens": [
+      "Fast response from our team",
+      "Trusted professionals",
+      "No price surprises"
+    ]
+  },
+  "Login": {
+    "titulo": "Sign in",
+    "descricao": "Access your BTS account",
+    "email": "Email",
+    "password": "Password",
+    "botao": "Sign in",
+    "semConta": "Don't have an account yet?",
+    "criarConta": "Create account",
+    "erroCredenciais": "Incorrect email or password.",
+    "erroEmail": "Enter your email",
+    "erroEmailInvalido": "Invalid email",
+    "erroPassword": "Enter your password"
+  },
+  "Registo": {
+    "titulo": "Create account",
+    "descricao": "Sign up as a BTS client",
+    "jaTensConta": "Already have an account?",
+    "entrar": "Sign in",
+    "nome": "Name",
+    "nomePlaceholder": "Your name",
+    "email": "Email",
+    "telefone": "Phone",
+    "moradaFaturacao": "Address and billing",
+    "moradaFaturacaoDescricao": "We need this information to schedule visits and issue invoices.",
+    "morada": "Address",
+    "moradaPlaceholder": "Street, number, floor",
+    "codigoPostal": "Postal code",
+    "distrito": "District",
+    "escolheDistrito": "Choose the district",
+    "nif": "Tax ID (NIF)",
+    "password": "Password",
+    "confirmarPassword": "Confirm password",
+    "aceito": "I have read and accept the",
+    "politicaPrivacidade": "Privacy Policy",
+    "botao": "Create account",
+    "confirmaEmailTitulo": "Confirm your email",
+    "confirmaEmailTexto": "We've sent a confirmation link to your email. Confirm your account to be able to sign in.",
+    "voltarLogin": "Back to sign in",
+    "erros": {
+      "contaExistente": "An account with this email already exists.",
+      "nome": "Enter your name",
+      "email": "Enter your email",
+      "emailInvalido": "Invalid email",
+      "telefone": "Enter a valid phone number",
+      "morada": "Enter your address",
+      "codigoPostal": "Enter the postal code",
+      "codigoPostalFormato": "Invalid format — use 0000-000",
+      "distrito": "Choose the district",
+      "nif": "Enter your tax ID (NIF)",
+      "nifInvalido": "Invalid tax ID (NIF)",
+      "password": "Minimum 6 characters",
+      "passwordDiferente": "Passwords don't match",
+      "aceitaPrivacidade": "You must accept the Privacy Policy to create an account."
+    }
+  },
+  "Privacidade": {
+    "titulo": "Privacy Policy",
+    "ultimaAtualizacao": "Last updated: August 2026",
+    "voltar": "Back",
+    "s1": {
+      "titulo": "1. Who we are",
+      "p1": "BTS — Bizarro Total Solutions (\"we\", \"our company\") provides home technical services (electrical, telecommunications, carpentry and others). This platform allows clients to request services and track their status."
+    },
+    "s2": {
+      "titulo": "2. What data we collect",
+      "intro": "We only collect the data necessary to provide the service:",
+      "lista": [
+        "Identification data: name, email and phone number.",
+        "Address data, when needed to send a technician.",
+        "Service request details: description, photos/attachments, comments and history.",
+        "Billing data, where applicable."
+      ]
+    },
+    "s3": {
+      "titulo": "3. What we use the data for",
+      "lista": [
+        "Managing your account and authentication on the platform.",
+        "Processing and tracking your service requests.",
+        "Communicating with you about scheduling, quotes and invoices.",
+        "Complying with legal and tax obligations."
+      ]
+    },
+    "s4": {
+      "titulo": "4. Legal basis",
+      "p1": "We process your data based on the performance of the service contract between you and BTS, your consent (where applicable) and compliance with legal obligations, under the General Data Protection Regulation (GDPR)."
+    },
+    "s5": {
+      "titulo": "5. Data sharing",
+      "p1": "We don't sell or share your data with third parties for marketing purposes. Your data is stored on trusted third-party infrastructure (database and hosting providers) acting as processors, solely for the technical operation of the platform."
+    },
+    "s6": {
+      "titulo": "6. How long we keep your data",
+      "p1": "We keep your data while your account is active and for the additional period required by legal and tax obligations. You can request deletion of your account at any time through the contacts below."
+    },
+    "s7": {
+      "titulo": "7. Your rights",
+      "intro": "Under the GDPR, you have the right to:",
+      "lista": [
+        "Access the data we hold about you.",
+        "Request correction of inaccurate data.",
+        "Request erasure of your data (\"right to be forgotten\").",
+        "Object to processing or request its restriction.",
+        "Request portability of your data."
+      ],
+      "contacta": "To exercise any of these rights, contact us by email"
+    },
+    "s8": {
+      "titulo": "8. Security",
+      "p1": "We apply appropriate technical and organizational measures to protect your data, including role-based access control and encryption in communications."
+    },
+    "s9": {
+      "titulo": "9. Cookies",
+      "p1": "We only use cookies that are strictly necessary for the platform to work — specifically, a session cookie that keeps your account signed in while you browse. Without this cookie, you cannot stay signed in.",
+      "p2": "We don't use advertising cookies, third-party tracking, or analytics tools that identify your browsing. Since these cookies are essential to the service, they can't be disabled while keeping access to your account — but they are never used for anything other than keeping you securely signed in."
+    },
+    "s10": {
+      "titulo": "10. Changes to this policy",
+      "p1": "We may update this policy periodically. The last update date is shown at the top of this page."
+    },
+    "s11": {
+      "titulo": "11. Contact",
+      "p1": "For questions about privacy and data protection, contact us at {email} or {telefone}."
+    }
+  },
+  "Enums": {
+    "estadoPedido": {
+      "pendente": "Pending",
+      "aprovado": "Approved",
+      "em_curso": "In progress",
+      "concluido": "Completed",
+      "cancelado": "Cancelled"
+    },
+    "prioridade": {
+      "baixa": "Low",
+      "normal": "Normal",
+      "alta": "High",
+      "urgente": "Urgent"
+    },
+    "estadoPagamento": {
+      "pendente": "Pending",
+      "pago": "Paid",
+      "parcial": "Partial"
+    },
+    "metodoPagamento": {
+      "mbway": "MB WAY",
+      "transferencia": "Bank transfer",
+      "multibanco": "Multibanco",
+      "numerario": "Cash"
+    },
+    "tipoAnexo": {
+      "foto_antes": "Photo (before)",
+      "foto_depois": "Photo (after)",
+      "documento": "Document"
+    }
+  },
+  "Cliente": {
+    "layout": {
+      "osMeusPedidos": "My requests",
+      "novoPedido": "New request",
+      "perfilLabel": "Client",
+      "sairLabel": "Sign out"
+    },
+    "dashboard": {
+      "titulo": "My requests",
+      "subtitulo": "Track the status of the services you requested from BTS.",
+      "novoPedido": "New request",
+      "pedidosAbertos": "Open requests",
+      "totalPedidos": "Total requests",
+      "bemVindo": "Welcome to BTS!",
+      "semPedidosTexto": "You haven't made any requests yet. Tell us what you need and our team will get in touch within 24h.",
+      "pedirPrimeiro": "Request your first service",
+      "servicoADefinir": "Service to be defined",
+      "pedidoEm": "Requested on {data}"
+    },
+    "novoPedido": {
+      "voltar": "Back",
+      "titulo": "New request",
+      "subtitulo": "Tell us what you need and our team will get in touch.",
+      "tipoServico": "Service type",
+      "escolheServico": "Choose the service you need",
+      "tituloPedido": "Request title",
+      "tituloPlaceholder": "E.g.: Replace kitchen outlet",
+      "descricao": "Description (optional)",
+      "descricaoPlaceholder": "Explain in more detail what you need",
+      "moradaServico": "Service address",
+      "moradaPlaceholder": "Street, number, floor",
+      "codigoPostal": "Postal code",
+      "dataPretendida": "Preferred date (optional)",
+      "dataPretendidaDescricao": "We'll try to schedule as close to this date as possible.",
+      "prioridade": "Priority",
+      "botao": "Request service",
+      "erros": {
+        "tipoServico": "Choose the service type",
+        "titulo": "Briefly describe your request",
+        "morada": "Enter the address where the service will take place",
+        "generico": "Couldn't create the request."
+      }
+    },
+    "detalhe": {
+      "voltar": "Back",
+      "servicoADefinir": "Service to be defined",
+      "pedidoEm": "Requested on {data}",
+      "pretendidoPara": "preferred for {data}",
+      "valorFinal": "Final amount: {valor}",
+      "orcamento": "Quote: {valor}",
+      "fatura": "Invoice",
+      "fotosDocumentos": "Photos and documents",
+      "aTuaAvaliacao": "Your review",
+      "comentarios": "Comments"
+    },
+    "avaliacao": {
+      "titulo": "How was the service?",
+      "comentarioPlaceholder": "Comment (optional)",
+      "botao": "Submit review",
+      "avaliadoEm": "Reviewed on {data}"
+    },
+    "comentarios": {
+      "placeholder": "Write a comment…",
+      "botao": "Send",
+      "semComentarios": "No comments on this request yet.",
+      "tu": "You",
+      "equipaBts": "BTS Team"
+    },
+    "fatura": {
+      "emitidaEm": "Issued on {data}"
+    },
+    "anexos": {
+      "semAnexos": "No photos or documents yet."
+    }
+  }
+}

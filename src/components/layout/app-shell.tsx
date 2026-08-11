@@ -98,7 +98,17 @@ function NavLinks({ groups, onNavigate }: { groups: NavGroup[]; onNavigate?: () 
 // mobile é frágil (portais/z-index a competir) e o terminar sessão é
 // demasiado importante para depender disso — fica sempre visível e a um
 // único toque, tanto no desktop como no mobile.
-function UserMenu({ nome, email, perfilLabel }: { nome: string; email: string; perfilLabel: string }) {
+function UserMenu({
+  nome,
+  email,
+  perfilLabel,
+  sairLabel,
+}: {
+  nome: string
+  email: string
+  perfilLabel: string
+  sairLabel?: string
+}) {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2 rounded-md border p-2">
@@ -112,7 +122,7 @@ function UserMenu({ nome, email, perfilLabel }: { nome: string; email: string; p
           <p className="truncate text-xs text-muted-foreground">{email || perfilLabel}</p>
         </div>
       </div>
-      <SignOutButton />
+      <SignOutButton label={sairLabel} />
     </div>
   )
 }
@@ -123,6 +133,7 @@ export function AppShell({
   email,
   perfilLabel,
   titulo,
+  sairLabel,
   children,
 }: {
   groups: NavGroup[]
@@ -130,6 +141,7 @@ export function AppShell({
   email: string
   perfilLabel: string
   titulo?: string
+  sairLabel?: string
   children: React.ReactNode
 }) {
   const [aberto, setAberto] = useState(false)
@@ -143,7 +155,7 @@ export function AppShell({
         </div>
         <NavLinks groups={groups} />
         <div className="border-t p-3">
-          <UserMenu nome={nome} email={email} perfilLabel={perfilLabel} />
+          <UserMenu nome={nome} email={email} perfilLabel={perfilLabel} sairLabel={sairLabel} />
         </div>
       </aside>
 
@@ -165,7 +177,7 @@ export function AppShell({
               </div>
               <NavLinks groups={groups} onNavigate={() => setAberto(false)} />
               <div className="border-t p-3">
-                <UserMenu nome={nome} email={email} perfilLabel={perfilLabel} />
+                <UserMenu nome={nome} email={email} perfilLabel={perfilLabel} sairLabel={sairLabel} />
               </div>
             </SheetContent>
           </Sheet>

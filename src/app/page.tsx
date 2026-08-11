@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 import {
   Zap,
   Wifi,
@@ -31,33 +32,10 @@ import { Logo } from "@/components/brand/logo"
 import { CONTACTO } from "@/lib/contacto"
 import { MobileNav } from "@/components/landing/mobile-nav"
 import { Reveal } from "@/components/landing/reveal"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
-const SERVICOS = [
-  {
-    nome: "Eletricidade",
-    icon: Zap,
-    cor: "gold" as const,
-    texto: "Instalações, quadros elétricos, reparações, certificações ITED/ITUR e iluminação LED.",
-  },
-  {
-    nome: "Telecomunicações",
-    icon: Wifi,
-    cor: "teal" as const,
-    texto: "CCTV, alarmes, redes estruturadas, fibra ótica, controlo de acessos e domótica.",
-  },
-  {
-    nome: "Carpintaria",
-    icon: Hammer,
-    cor: "wood" as const,
-    texto: "Mobiliário à medida, roupeiros embutidos, pavimentos e decks exteriores.",
-  },
-  { nome: "Montagem de Móveis", icon: Armchair, cor: "navy" as const, texto: "Montagem rápida e cuidada de qualquer mobiliário." },
-  { nome: "Exaustores", icon: Fan, cor: "teal" as const, texto: "Instalação e manutenção de exaustores de cozinha." },
-  { nome: "Montagem de TV / Som", icon: Tv, cor: "gold" as const, texto: "Fixação de TV, colunas e sistemas de som." },
-  { nome: "Estendais", icon: Shirt, cor: "navy" as const, texto: "Instalação de estendais elétricos e manuais." },
-  { nome: "Pintura", icon: Paintbrush, cor: "wood" as const, texto: "Pintura de interiores e exteriores com acabamento profissional." },
-  { nome: "Serviços Gerais", icon: Wrench, cor: "teal" as const, texto: "Pequenas reparações e manutenção geral da casa." },
-]
+const SERVICOS_ICONES = [Zap, Wifi, Hammer, Armchair, Fan, Tv, Shirt, Paintbrush, Wrench]
+const SERVICOS_CORES = ["gold", "teal", "wood", "navy", "teal", "gold", "navy", "wood", "teal"] as const
 
 const CORES = {
   gold: "bg-brand-gold-soft text-brand-gold-foreground",
@@ -66,44 +44,25 @@ const CORES = {
   navy: "bg-brand-navy-soft text-brand-navy",
 }
 
-const PASSOS = [
-  {
-    icon: ClipboardCheck,
-    titulo: "Pedes o serviço",
-    texto: "Escolhes a especialidade, descreves o que precisas e a morada — leva menos de um minuto.",
-  },
-  {
-    icon: CalendarCheck2,
-    titulo: "Agendamos um profissional",
-    texto: "Respondemos a todos os pedidos em 24h e enviamos um técnico qualificado.",
-  },
-  {
-    icon: ThumbsUp,
-    titulo: "Acompanhas tudo online",
-    texto: "Vês o estado do pedido, falas com a equipa, recebes a fatura e avalias o serviço.",
-  },
-]
+const PASSOS_ICONES = [ClipboardCheck, CalendarCheck2, ThumbsUp]
+const VANTAGENS_ICONES = [Clock, ShieldCheck, BadgeEuro]
+const CONFIANCA_ICONES = [BadgeCheck, Map, Wallet]
 
-const VANTAGENS = [
-  { icon: Clock, valor: "< 24H", titulo: "Resposta rápida", texto: "Respondemos a todos os pedidos em dias úteis — mais rápido via WhatsApp." },
-  { icon: ShieldCheck, valor: "12 MESES", titulo: "Garantia total", texto: "Em instalações — 6 meses em reparações." },
-  { icon: BadgeEuro, valor: "0€", titulo: "Orçamento grátis", texto: "Sem surpresas no preço, sem compromisso." },
-]
+export default async function LandingPage() {
+  const t = await getTranslations("Landing")
 
-const CONFIANCA = [
-  { icon: BadgeCheck, titulo: "Trabalho sério, preço justo", texto: "Equipa própria, qualificada em cada área, com garantia incluída." },
-  { icon: Map, titulo: "Área de atuação alargada", texto: "Grande Porto, Braga, Aveiro e arredores — raio de cerca de 100 km." },
-  { icon: Wallet, titulo: "Pagamento fácil", texto: "Transferência, MB Way/Multibanco ou dinheiro. Obras maiores podem ser faseadas." },
-]
+  const NAV_LINKS = [
+    { href: "#servicos", label: t("nav.servicos") },
+    { href: "#como-funciona", label: t("nav.comoFunciona") },
+    { href: "#confianca", label: t("nav.confianca") },
+    { href: "#contacto", label: t("nav.contacto") },
+  ]
 
-const NAV_LINKS = [
-  { href: "#servicos", label: "Serviços" },
-  { href: "#como-funciona", label: "Como funciona" },
-  { href: "#confianca", label: "Porque escolher-nos" },
-  { href: "#contacto", label: "Contacto" },
-]
+  const vantagens = t.raw("vantagens") as { valor: string; titulo: string; texto: string }[]
+  const passos = t.raw("comoFunciona.passos") as { titulo: string; texto: string }[]
+  const servicos = t.raw("servicos.lista") as { nome: string; texto: string }[]
+  const confianca = t.raw("confianca.lista") as { titulo: string; texto: string }[]
 
-export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-1 flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
@@ -119,14 +78,18 @@ export default function LandingPage() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button variant="ghost" render={<Link href="/login">Entrar</Link>} />
+            <LanguageSwitcher className="mr-1" />
+            <Button variant="ghost" render={<Link href="/login">{t("entrar")}</Link>} />
             <Button
               className="bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
-              render={<Link href="/registo">Criar conta</Link>}
+              render={<Link href="/registo">{t("criarConta")}</Link>}
             />
           </div>
 
-          <MobileNav navLinks={NAV_LINKS} />
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <MobileNav navLinks={NAV_LINKS} entrarLabel={t("entrar")} criarContaLabel={t("criarConta")} />
+          </div>
         </div>
       </header>
 
@@ -149,24 +112,20 @@ export default function LandingPage() {
             <div className="mx-auto max-w-2xl text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-brand-gold">
                 <Star className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
-                Trabalho sério · preço justo · garantia total
+                {t("hero.badge")}
               </span>
               <h1 className="mt-5 text-3xl font-bold tracking-tight sm:text-5xl">
-                Serviços técnicos ao domicílio,
-                <span className="text-gradient-gold block sm:inline"> sem complicações</span>
+                {t("hero.titulo")}
+                <span className="text-gradient-gold block sm:inline"> {t("hero.tituloDestaque")}</span>
               </h1>
-              <p className="mx-auto mt-4 max-w-xl text-white/80 sm:text-lg">
-                Eletricidade, carpintaria, telecomunicações e muito mais. Pede um
-                serviço, acompanha o estado do pedido e fala com a nossa equipa —
-                tudo numa só plataforma.
-              </p>
+              <p className="mx-auto mt-4 max-w-xl text-white/80 sm:text-lg">{t("hero.texto")}</p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button
                   size="lg"
                   className="bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
                   render={
                     <Link href="/registo">
-                      Pedir um serviço <ArrowRight className="h-4 w-4" />
+                      {t("hero.pedirServico")} <ArrowRight className="h-4 w-4" />
                     </Link>
                   }
                 />
@@ -174,25 +133,25 @@ export default function LandingPage() {
                   size="lg"
                   variant="outline"
                   className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-                  render={<Link href="/login">Já sou cliente</Link>}
+                  render={<Link href="/login">{t("hero.jaSouCliente")}</Link>}
                 />
               </div>
             </div>
 
             <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {VANTAGENS.map(({ icon: Icon, valor, titulo, texto }) => (
-                <div
-                  key={titulo}
-                  className="glass-panel glow-on-hover rounded-xl p-4"
-                >
-                  <div className="flex items-center justify-between">
-                    <Icon className="h-5 w-5 text-brand-gold" />
-                    <span className="font-mono text-lg font-bold text-brand-gold">{valor}</span>
+              {vantagens.map(({ valor, titulo, texto }, i) => {
+                const Icon = VANTAGENS_ICONES[i]
+                return (
+                  <div key={titulo} className="glass-panel glow-on-hover rounded-xl p-4">
+                    <div className="flex items-center justify-between">
+                      <Icon className="h-5 w-5 text-brand-gold" />
+                      <span className="font-mono text-lg font-bold text-brand-gold">{valor}</span>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold">{titulo}</p>
+                    <p className="mt-0.5 text-xs text-white/70">{texto}</p>
                   </div>
-                  <p className="mt-2 text-sm font-semibold">{titulo}</p>
-                  <p className="mt-0.5 text-xs text-white/70">{texto}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -200,26 +159,27 @@ export default function LandingPage() {
         {/* Como funciona */}
         <section id="como-funciona" className="mx-auto max-w-6xl scroll-mt-28 px-4 py-16 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Como funciona</h2>
-            <p className="mt-2 text-muted-foreground">
-              Do pedido à conclusão do trabalho, em três passos simples.
-            </p>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("comoFunciona.titulo")}</h2>
+            <p className="mt-2 text-muted-foreground">{t("comoFunciona.subtitulo")}</p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {PASSOS.map(({ icon: Icon, titulo, texto }, i) => (
-              <Reveal key={titulo} delay={i * 100}>
-                <div className="glow-on-hover relative h-full rounded-2xl border bg-card p-6">
-                  <span className="absolute -top-3 -left-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy font-mono text-xs font-bold text-brand-navy-foreground">
-                    {i + 1}
-                  </span>
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold-soft text-brand-gold-foreground">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <p className="mt-4 font-semibold">{titulo}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
-                </div>
-              </Reveal>
-            ))}
+            {passos.map(({ titulo, texto }, i) => {
+              const Icon = PASSOS_ICONES[i]
+              return (
+                <Reveal key={titulo} delay={i * 100}>
+                  <div className="glow-on-hover relative h-full rounded-2xl border bg-card p-6">
+                    <span className="absolute -top-3 -left-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy font-mono text-xs font-bold text-brand-navy-foreground">
+                      {i + 1}
+                    </span>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold-soft text-brand-gold-foreground">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <p className="mt-4 font-semibold">{titulo}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </section>
 
@@ -227,25 +187,27 @@ export default function LandingPage() {
         <section id="servicos" className="border-y bg-muted/30 px-4 py-16 scroll-mt-20 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-xl text-center">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">As nossas especialidades</h2>
-              <p className="mt-2 text-muted-foreground">
-                Uma equipa, todas as competências que a tua casa precisa.
-              </p>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("servicos.titulo")}</h2>
+              <p className="mt-2 text-muted-foreground">{t("servicos.subtitulo")}</p>
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {SERVICOS.map(({ nome, icon: Icon, cor, texto }, i) => (
-                <Reveal key={nome} delay={(i % 3) * 80}>
-                  <div className="glow-on-hover flex h-full gap-3 rounded-xl border bg-card p-4">
-                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${CORES[cor]}`}>
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold">{nome}</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">{texto}</p>
+              {servicos.map(({ nome, texto }, i) => {
+                const Icon = SERVICOS_ICONES[i]
+                const cor = SERVICOS_CORES[i]
+                return (
+                  <Reveal key={nome} delay={(i % 3) * 80}>
+                    <div className="glow-on-hover flex h-full gap-3 rounded-xl border bg-card p-4">
+                      <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${CORES[cor]}`}>
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold">{nome}</p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">{texto}</p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -253,23 +215,24 @@ export default function LandingPage() {
         {/* Confiança / porque escolher-nos */}
         <section id="confianca" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Porque escolher a BTS</h2>
-            <p className="mt-2 text-muted-foreground">
-              Soluções inteligentes, resultados excelentes — é assim que trabalhamos.
-            </p>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("confianca.titulo")}</h2>
+            <p className="mt-2 text-muted-foreground">{t("confianca.subtitulo")}</p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {CONFIANCA.map(({ icon: Icon, titulo, texto }, i) => (
-              <Reveal key={titulo} delay={i * 100}>
-                <div className="glow-on-hover h-full rounded-2xl border bg-card p-6 text-center">
-                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-teal-soft text-brand-teal">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <p className="mt-4 font-semibold">{titulo}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
-                </div>
-              </Reveal>
-            ))}
+            {confianca.map(({ titulo, texto }, i) => {
+              const Icon = CONFIANCA_ICONES[i]
+              return (
+                <Reveal key={titulo} delay={i * 100}>
+                  <div className="glow-on-hover h-full rounded-2xl border bg-card p-6 text-center">
+                    <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-teal-soft text-brand-teal">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <p className="mt-4 font-semibold">{titulo}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </section>
 
@@ -277,10 +240,8 @@ export default function LandingPage() {
         <section id="contacto" className="border-y bg-muted/30 px-4 py-16 scroll-mt-20 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-xl text-center">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Fala connosco</h2>
-              <p className="mt-2 text-muted-foreground">
-                Estamos disponíveis por telefone, WhatsApp ou email. Orçamento grátis e sem compromisso.
-              </p>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("contacto.titulo")}</h2>
+              <p className="mt-2 text-muted-foreground">{t("contacto.subtitulo")}</p>
             </div>
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
               <a
@@ -292,7 +253,7 @@ export default function LandingPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-teal-soft text-brand-teal">
                   <MessageCircle className="h-6 w-6" />
                 </span>
-                <p className="font-semibold">WhatsApp</p>
+                <p className="font-semibold">{t("contacto.whatsapp")}</p>
                 <p className="text-sm text-muted-foreground">{CONTACTO.telefone}</p>
               </a>
               <a
@@ -302,7 +263,7 @@ export default function LandingPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gold-soft text-brand-gold-foreground">
                   <Phone className="h-6 w-6" />
                 </span>
-                <p className="font-semibold">Telefone</p>
+                <p className="font-semibold">{t("contacto.telefone")}</p>
                 <p className="text-sm text-muted-foreground">{CONTACTO.telefone}</p>
               </a>
               <a
@@ -312,12 +273,12 @@ export default function LandingPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-navy-soft text-brand-navy">
                   <Mail className="h-6 w-6" />
                 </span>
-                <p className="font-semibold">Email</p>
+                <p className="font-semibold">{t("contacto.email")}</p>
                 <p className="text-sm text-muted-foreground">{CONTACTO.email}</p>
               </a>
             </div>
             <p className="mt-8 flex items-center justify-center gap-1.5 text-center text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" /> {CONTACTO.morada} — atendemos toda a área metropolitana do Porto, Braga e Aveiro
+              <MapPin className="h-4 w-4" /> {CONTACTO.morada} — {t("contacto.area")}
             </p>
           </div>
         </section>
@@ -327,19 +288,15 @@ export default function LandingPage() {
           <div className="bg-grid-pattern pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_70%_100%_at_50%_50%,black,transparent)]" />
           <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand-teal/20 blur-3xl" />
           <Reveal className="relative mx-auto max-w-xl">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Precisas de um técnico? Estamos a um pedido de distância.
-            </h2>
-            <p className="mt-3 text-white/80">
-              Cria a tua conta gratuita e faz o teu primeiro pedido em menos de dois minutos.
-            </p>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("ctaFinal.titulo")}</h2>
+            <p className="mt-3 text-white/80">{t("ctaFinal.texto")}</p>
             <div className="mt-7">
               <Button
                 size="lg"
                 className="bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
                 render={
                   <Link href="/registo">
-                    Criar conta grátis <ArrowRight className="h-4 w-4" />
+                    {t("ctaFinal.botao")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 }
               />
@@ -352,9 +309,7 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:justify-between">
           <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
             <Logo tamanho="h-8" />
-            <p className="max-w-xs text-sm text-muted-foreground">
-              Soluções inteligentes, resultados excelentes. Serviços técnicos ao domicílio na Grande Área do Porto, Braga e Aveiro.
-            </p>
+            <p className="max-w-xs text-sm text-muted-foreground">{t("footer.descricao")}</p>
           </div>
           <div className="flex flex-col items-center gap-2 text-center text-sm text-muted-foreground sm:items-start sm:text-left">
             <a href={CONTACTO.telefoneHref} className="flex items-center gap-1.5 hover:text-foreground">
@@ -369,9 +324,9 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="mx-auto mt-8 flex max-w-6xl flex-col items-center gap-2 border-t pt-6 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between sm:text-left">
-          <p>© {new Date().getFullYear()} BTS — Bizarro Total Solutions. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} BTS — Bizarro Total Solutions. {t("footer.direitos")}</p>
           <Link href="/privacidade" className="hover:text-foreground hover:underline">
-            Política de Privacidade
+            {t("footer.privacidade")}
           </Link>
         </div>
       </footer>

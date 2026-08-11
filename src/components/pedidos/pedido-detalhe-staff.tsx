@@ -198,8 +198,8 @@ export async function PedidoDetalheStaff({
           </div>
         ) : (
           <p className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-            Ainda sem trabalho — clica em "Agendar" para criar e marcar logo a data, ou "Transformar em
-            trabalho" se quiseres só anexar fotos primeiro.
+            Ainda sem trabalho — clica em &ldquo;Agendar&rdquo; para criar e marcar logo a data, ou
+            &ldquo;Transformar em trabalho&rdquo; se quiseres só anexar fotos primeiro.
           </p>
         )}
       </section>

@@ -1,0 +1,315 @@
+{
+  "Landing": {
+    "nav": {
+      "servicos": "Leistungen",
+      "comoFunciona": "So funktioniert's",
+      "confianca": "Warum wir",
+      "contacto": "Kontakt"
+    },
+    "entrar": "Anmelden",
+    "criarConta": "Konto erstellen",
+    "hero": {
+      "badge": "Seriöse Arbeit · faire Preise · volle Garantie",
+      "titulo": "Handwerkerservice zu Hause,",
+      "tituloDestaque": "ganz unkompliziert",
+      "texto": "Elektrik, Schreinerei, Telekommunikation und vieles mehr. Auftrag stellen, Status verfolgen und mit unserem Team sprechen — alles auf einer Plattform.",
+      "pedirServico": "Service anfragen",
+      "jaSouCliente": "Ich bin bereits Kunde"
+    },
+    "vantagens": [
+      { "valor": "< 24H", "titulo": "Schnelle Antwort", "texto": "Wir beantworten alle Anfragen an Werktagen — noch schneller per WhatsApp." },
+      { "valor": "12 MONATE", "titulo": "Volle Garantie", "texto": "Auf Installationen — 6 Monate auf Reparaturen." },
+      { "valor": "0€", "titulo": "Kostenloses Angebot", "texto": "Keine Preisüberraschungen, unverbindlich." }
+    ],
+    "comoFunciona": {
+      "titulo": "So funktioniert's",
+      "subtitulo": "Von der Anfrage bis zum fertigen Auftrag, in drei einfachen Schritten.",
+      "passos": [
+        { "titulo": "Service anfragen", "texto": "Wähle den Fachbereich, beschreibe dein Anliegen und die Adresse — dauert weniger als eine Minute." },
+        { "titulo": "Wir planen einen Fachmann", "texto": "Wir beantworten alle Anfragen innerhalb von 24h und schicken einen qualifizierten Techniker." },
+        { "titulo": "Alles online verfolgen", "texto": "Sieh den Status deiner Anfrage, sprich mit dem Team, erhalte die Rechnung und bewerte den Service." }
+      ]
+    },
+    "servicos": {
+      "titulo": "Unsere Fachbereiche",
+      "subtitulo": "Ein Team, jede Fähigkeit, die dein Zuhause braucht.",
+      "lista": [
+        { "nome": "Elektrik", "texto": "Installationen, Schaltschränke, Reparaturen, ITED/ITUR-Zertifizierungen und LED-Beleuchtung." },
+        { "nome": "Telekommunikation", "texto": "Videoüberwachung, Alarmanlagen, strukturierte Netzwerke, Glasfaser, Zutrittskontrolle und Hausautomation." },
+        { "nome": "Schreinerei", "texto": "Maßmöbel, Einbauschränke, Bodenbeläge und Außenterrassen." },
+        { "nome": "Möbelmontage", "texto": "Schnelle und sorgfältige Montage jeglicher Möbel." },
+        { "nome": "Dunstabzugshauben", "texto": "Installation und Wartung von Küchen-Dunstabzugshauben." },
+        { "nome": "TV- / Soundmontage", "texto": "TV-Wandmontage, Lautsprecher und Soundsysteme." },
+        { "nome": "Wäscheleinen", "texto": "Installation elektrischer und manueller Wäscheleinen." },
+        { "nome": "Malerarbeiten", "texto": "Innen- und Außenanstrich mit professionellem Finish." },
+        { "nome": "Allgemeine Dienstleistungen", "texto": "Kleinere Reparaturen und allgemeine Instandhaltung des Hauses." }
+      ]
+    },
+    "confianca": {
+      "titulo": "Warum BTS wählen",
+      "subtitulo": "Intelligente Lösungen, exzellente Ergebnisse — so arbeiten wir.",
+      "lista": [
+        { "titulo": "Seriöse Arbeit, faire Preise", "texto": "Eigenes Team, qualifiziert in jedem Bereich, inklusive Garantie." },
+        { "titulo": "Großes Einsatzgebiet", "texto": "Großraum Porto, Braga, Aveiro und Umgebung — Radius von rund 100 km." },
+        { "titulo": "Einfache Bezahlung", "texto": "Überweisung, MB Way/Multibanco oder bar. Größere Arbeiten können in Raten aufgeteilt werden." }
+      ]
+    },
+    "contacto": {
+      "titulo": "Kontaktiere uns",
+      "subtitulo": "Erreichbar per Telefon, WhatsApp oder E-Mail. Kostenloses, unverbindliches Angebot.",
+      "whatsapp": "WhatsApp",
+      "telefone": "Telefon",
+      "email": "E-Mail",
+      "area": "wir betreuen den gesamten Großraum Porto, Braga und Aveiro"
+    },
+    "ctaFinal": {
+      "titulo": "Brauchst du einen Techniker? Wir sind nur eine Anfrage entfernt.",
+      "texto": "Erstelle dein kostenloses Konto und stelle deine erste Anfrage in unter zwei Minuten.",
+      "botao": "Kostenloses Konto erstellen"
+    },
+    "footer": {
+      "descricao": "Intelligente Lösungen, exzellente Ergebnisse. Handwerkerservice im Großraum Porto, Braga und Aveiro.",
+      "direitos": "Alle Rechte vorbehalten.",
+      "privacidade": "Datenschutzerklärung"
+    }
+  },
+  "Auth": {
+    "badge": "Intelligente Lösungen, exzellente Ergebnisse",
+    "tagline": "Handwerkerservice zu Hause, ganz unkompliziert.",
+    "vantagens": [
+      "Schnelle Antwort von unserem Team",
+      "Vertrauenswürdige Fachleute",
+      "Keine Preisüberraschungen"
+    ]
+  },
+  "Login": {
+    "titulo": "Anmelden",
+    "descricao": "Auf dein BTS-Konto zugreifen",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "botao": "Anmelden",
+    "semConta": "Noch kein Konto?",
+    "criarConta": "Konto erstellen",
+    "erroCredenciais": "E-Mail oder Passwort falsch.",
+    "erroEmail": "Gib deine E-Mail-Adresse an",
+    "erroEmailInvalido": "Ungültige E-Mail-Adresse",
+    "erroPassword": "Gib dein Passwort an"
+  },
+  "Registo": {
+    "titulo": "Konto erstellen",
+    "descricao": "Als BTS-Kunde registrieren",
+    "jaTensConta": "Hast du schon ein Konto?",
+    "entrar": "Anmelden",
+    "nome": "Name",
+    "nomePlaceholder": "Dein Name",
+    "email": "E-Mail",
+    "telefone": "Telefon",
+    "moradaFaturacao": "Adresse und Rechnungsstellung",
+    "moradaFaturacaoDescricao": "Diese Angaben benötigen wir, um Termine zu planen und Rechnungen auszustellen.",
+    "morada": "Adresse",
+    "moradaPlaceholder": "Straße, Hausnummer, Stockwerk",
+    "codigoPostal": "Postleitzahl",
+    "distrito": "Bezirk",
+    "escolheDistrito": "Bezirk auswählen",
+    "nif": "Steuernummer (NIF)",
+    "password": "Passwort",
+    "confirmarPassword": "Passwort bestätigen",
+    "aceito": "Ich habe die",
+    "politicaPrivacidade": "Datenschutzerklärung",
+    "botao": "Konto erstellen",
+    "confirmaEmailTitulo": "Bestätige deine E-Mail",
+    "confirmaEmailTexto": "Wir haben dir einen Bestätigungslink per E-Mail geschickt. Bestätige dein Konto, um dich anmelden zu können.",
+    "voltarLogin": "Zurück zur Anmeldung",
+    "erros": {
+      "contaExistente": "Für diese E-Mail-Adresse besteht bereits ein Konto.",
+      "nome": "Gib deinen Namen an",
+      "email": "Gib deine E-Mail-Adresse an",
+      "emailInvalido": "Ungültige E-Mail-Adresse",
+      "telefone": "Gib eine gültige Telefonnummer an",
+      "morada": "Gib deine Adresse an",
+      "codigoPostal": "Gib die Postleitzahl an",
+      "codigoPostalFormato": "Ungültiges Format — verwende 0000-000",
+      "distrito": "Bezirk auswählen",
+      "nif": "Gib deine Steuernummer (NIF) an",
+      "nifInvalido": "Ungültige Steuernummer (NIF)",
+      "password": "Mindestens 6 Zeichen",
+      "passwordDiferente": "Die Passwörter stimmen nicht überein",
+      "aceitaPrivacidade": "Du musst die Datenschutzerklärung akzeptieren, um ein Konto zu erstellen."
+    }
+  },
+  "Privacidade": {
+    "titulo": "Datenschutzerklärung",
+    "ultimaAtualizacao": "Letzte Aktualisierung: August 2026",
+    "voltar": "Zurück",
+    "s1": {
+      "titulo": "1. Wer wir sind",
+      "p1": "BTS — Bizarro Total Solutions („wir“, „unser Unternehmen“) bietet Handwerkerservice zu Hause an (Elektrik, Telekommunikation, Schreinerei und mehr). Über diese Plattform können Kunden Leistungen anfragen und deren Status verfolgen."
+    },
+    "s2": {
+      "titulo": "2. Welche Daten wir erheben",
+      "intro": "Wir erheben nur die für die Leistungserbringung notwendigen Daten:",
+      "lista": [
+        "Identifikationsdaten: Name, E-Mail und Telefonnummer.",
+        "Adressdaten, sofern für die Anfahrt eines Technikers erforderlich.",
+        "Details zu Serviceanfragen: Beschreibung, Fotos/Anhänge, Kommentare und Verlauf.",
+        "Rechnungsdaten, sofern zutreffend."
+      ]
+    },
+    "s3": {
+      "titulo": "3. Wofür wir die Daten verwenden",
+      "lista": [
+        "Verwaltung deines Kontos und Authentifizierung auf der Plattform.",
+        "Bearbeitung und Nachverfolgung deiner Serviceanfragen.",
+        "Kommunikation mit dir zu Terminen, Angeboten und Rechnungen.",
+        "Erfüllung gesetzlicher und steuerlicher Pflichten."
+      ]
+    },
+    "s4": {
+      "titulo": "4. Rechtsgrundlage",
+      "p1": "Wir verarbeiten deine Daten auf Grundlage der Erfüllung des Dienstleistungsvertrags zwischen dir und BTS, deiner Einwilligung (sofern zutreffend) und der Erfüllung gesetzlicher Pflichten gemäß der Datenschutz-Grundverordnung (DSGVO)."
+    },
+    "s5": {
+      "titulo": "5. Datenweitergabe",
+      "p1": "Wir verkaufen oder teilen deine Daten nicht mit Dritten zu Marketingzwecken. Deine Daten werden auf vertrauenswürdiger Drittanbieter-Infrastruktur gespeichert (Datenbank- und Hosting-Anbieter), die als Auftragsverarbeiter ausschließlich für den technischen Betrieb der Plattform tätig sind."
+    },
+    "s6": {
+      "titulo": "6. Wie lange wir die Daten speichern",
+      "p1": "Wir speichern deine Daten, solange dein Konto aktiv ist, sowie für den zusätzlichen Zeitraum, der von gesetzlichen und steuerlichen Pflichten vorgeschrieben ist. Du kannst die Löschung deines Kontos jederzeit über die untenstehenden Kontaktangaben beantragen."
+    },
+    "s7": {
+      "titulo": "7. Deine Rechte",
+      "intro": "Gemäß der DSGVO hast du das Recht auf:",
+      "lista": [
+        "Zugang zu den über dich gespeicherten Daten.",
+        "Berichtigung unrichtiger Daten.",
+        "Löschung deiner Daten („Recht auf Vergessenwerden“).",
+        "Widerspruch gegen die Verarbeitung oder Einschränkung derselben.",
+        "Übertragbarkeit deiner Daten."
+      ],
+      "contacta": "Um eines dieser Rechte auszuüben, kontaktiere uns per E-Mail unter"
+    },
+    "s8": {
+      "titulo": "8. Sicherheit",
+      "p1": "Wir wenden geeignete technische und organisatorische Maßnahmen an, um deine Daten zu schützen, einschließlich rollenbasierter Zugriffskontrolle und Verschlüsselung der Kommunikation."
+    },
+    "s9": {
+      "titulo": "9. Cookies",
+      "p1": "Wir verwenden ausschließlich für den Betrieb der Plattform unbedingt erforderliche Cookies — konkret ein Session-Cookie, das dein Konto während der Nutzung angemeldet hält. Ohne dieses Cookie ist es nicht möglich, angemeldet zu bleiben.",
+      "p2": "Wir verwenden keine Werbe-Cookies, kein Tracking durch Dritte und keine Analysetools, die dein Surfverhalten identifizieren. Da diese Cookies für den Dienst unerlässlich sind, können sie nicht deaktiviert werden, ohne den Zugriff auf dein Konto zu verlieren — sie werden jedoch ausschließlich dazu verwendet, dich sicher angemeldet zu halten."
+    },
+    "s10": {
+      "titulo": "10. Änderungen dieser Richtlinie",
+      "p1": "Wir können diese Richtlinie regelmäßig aktualisieren. Das Datum der letzten Aktualisierung wird oben auf dieser Seite angezeigt."
+    },
+    "s11": {
+      "titulo": "11. Kontakt",
+      "p1": "Bei Fragen zu Datenschutz und Datenverarbeitung kontaktiere uns unter {email} oder {telefone}."
+    }
+  },
+  "Enums": {
+    "estadoPedido": {
+      "pendente": "Ausstehend",
+      "aprovado": "Genehmigt",
+      "em_curso": "In Bearbeitung",
+      "concluido": "Abgeschlossen",
+      "cancelado": "Storniert"
+    },
+    "prioridade": {
+      "baixa": "Niedrig",
+      "normal": "Normal",
+      "alta": "Hoch",
+      "urgente": "Dringend"
+    },
+    "estadoPagamento": {
+      "pendente": "Ausstehend",
+      "pago": "Bezahlt",
+      "parcial": "Teilweise"
+    },
+    "metodoPagamento": {
+      "mbway": "MB WAY",
+      "transferencia": "Überweisung",
+      "multibanco": "Multibanco",
+      "numerario": "Bar"
+    },
+    "tipoAnexo": {
+      "foto_antes": "Foto (vorher)",
+      "foto_depois": "Foto (nachher)",
+      "documento": "Dokument"
+    }
+  },
+  "Cliente": {
+    "layout": {
+      "osMeusPedidos": "Meine Anfragen",
+      "novoPedido": "Neue Anfrage",
+      "perfilLabel": "Kunde",
+      "sairLabel": "Abmelden"
+    },
+    "dashboard": {
+      "titulo": "Meine Anfragen",
+      "subtitulo": "Verfolge den Status der bei BTS angefragten Leistungen.",
+      "novoPedido": "Neue Anfrage",
+      "pedidosAbertos": "Offene Anfragen",
+      "totalPedidos": "Anfragen insgesamt",
+      "bemVindo": "Willkommen bei BTS!",
+      "semPedidosTexto": "Du hast noch keine Anfrage gestellt. Sag uns, was du brauchst, und unser Team meldet sich innerhalb von 24h bei dir.",
+      "pedirPrimeiro": "Ersten Service anfragen",
+      "servicoADefinir": "Leistung noch offen",
+      "pedidoEm": "Angefragt am {data}"
+    },
+    "novoPedido": {
+      "voltar": "Zurück",
+      "titulo": "Neue Anfrage",
+      "subtitulo": "Sag uns, was du brauchst — unser Team meldet sich bei dir.",
+      "tipoServico": "Leistungsart",
+      "escolheServico": "Wähle die benötigte Leistung",
+      "tituloPedido": "Titel der Anfrage",
+      "tituloPlaceholder": "Z. B.: Küchensteckdose ersetzen",
+      "descricao": "Beschreibung (optional)",
+      "descricaoPlaceholder": "Erkläre genauer, was du brauchst",
+      "moradaServico": "Adresse des Einsatzortes",
+      "moradaPlaceholder": "Straße, Hausnummer, Stockwerk",
+      "codigoPostal": "Postleitzahl",
+      "dataPretendida": "Wunschtermin (optional)",
+      "dataPretendidaDescricao": "Wir versuchen, so nah wie möglich an diesem Termin zu planen.",
+      "prioridade": "Priorität",
+      "botao": "Service anfragen",
+      "erros": {
+        "tipoServico": "Wähle die Leistungsart",
+        "titulo": "Beschreibe deine Anfrage kurz",
+        "morada": "Gib die Adresse des Einsatzortes an",
+        "generico": "Die Anfrage konnte nicht erstellt werden."
+      }
+    },
+    "detalhe": {
+      "voltar": "Zurück",
+      "servicoADefinir": "Leistung noch offen",
+      "pedidoEm": "Angefragt am {data}",
+      "pretendidoPara": "gewünscht für {data}",
+      "valorFinal": "Endbetrag: {valor}",
+      "orcamento": "Angebot: {valor}",
+      "fatura": "Rechnung",
+      "fotosDocumentos": "Fotos und Dokumente",
+      "aTuaAvaliacao": "Deine Bewertung",
+      "comentarios": "Kommentare"
+    },
+    "avaliacao": {
+      "titulo": "Wie war der Service?",
+      "comentarioPlaceholder": "Kommentar (optional)",
+      "botao": "Bewertung senden",
+      "avaliadoEm": "Bewertet am {data}"
+    },
+    "comentarios": {
+      "placeholder": "Schreib einen Kommentar …",
+      "botao": "Senden",
+      "semComentarios": "Noch keine Kommentare zu dieser Anfrage.",
+      "tu": "Du",
+      "equipaBts": "BTS-Team"
+    },
+    "fatura": {
+      "emitidaEm": "Ausgestellt am {data}"
+    },
+    "anexos": {
+      "semAnexos": "Noch keine Fotos oder Dokumente."
+    }
+  }
+}

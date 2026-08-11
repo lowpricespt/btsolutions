@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { useTranslations } from "next-intl"
 import { Loader2, MailCheck } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/client"
@@ -31,37 +32,42 @@ import {
   FormDescription,
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
-
-const schema = z
-  .object({
-    nome: z.string().min(2, "Indica o teu nome"),
-    email: z.string().min(1, "Indica o email").email("Email inválido"),
-    telefone: z.string().min(9, "Indica um telefone válido"),
-    morada: z.string().min(3, "Indica a tua morada"),
-    codigo_postal: z.string().min(1, "Indica o código postal"),
-    distrito: z.string().min(1, "Escolhe o distrito"),
-    nif: z.string().min(1, "Indica o teu NIF"),
-    password: z.string().min(6, "Mínimo de 6 caracteres"),
-    confirmarPassword: z.string(),
-  })
-  .refine((v) => v.password === v.confirmarPassword, {
-    message: "As palavras-passe não coincidem",
-    path: ["confirmarPassword"],
-  })
-  .refine((v) => CODIGO_POSTAL_REGEX.test(v.codigo_postal), {
-    message: "Formato inválido — usa 0000-000",
-    path: ["codigo_postal"],
-  })
-  .refine((v) => validarNIF(v.nif), {
-    message: "NIF inválido",
-    path: ["nif"],
-  })
+import { Checkbox } from "@/components/ui/checkbox"
 
 export default function RegistoPage() {
   const router = useRouter()
+  const t = useTranslations("Registo")
   const [erro, setErro] = useState<string | null>(null)
   const [aEnviar, setAEnviar] = useState(false)
   const [emailPorConfirmar, setEmailPorConfirmar] = useState(false)
+
+  const schema = z
+    .object({
+      nome: z.string().min(2, t("erros.nome")),
+      email: z.string().min(1, t("erros.email")).email(t("erros.emailInvalido")),
+      telefone: z.string().min(9, t("erros.telefone")),
+      morada: z.string().min(3, t("erros.morada")),
+      codigo_postal: z.string().min(1, t("erros.codigoPostal")),
+      distrito: z.string().min(1, t("erros.distrito")),
+      nif: z.string().min(1, t("erros.nif")),
+      password: z.string().min(6, t("erros.password")),
+      confirmarPassword: z.string(),
+      aceitaPrivacidade: z.literal(true, {
+        message: t("erros.aceitaPrivacidade"),
+      }),
+    })
+    .refine((v) => v.password === v.confirmarPassword, {
+      message: t("erros.passwordDiferente"),
+      path: ["confirmarPassword"],
+    })
+    .refine((v) => CODIGO_POSTAL_REGEX.test(v.codigo_postal), {
+      message: t("erros.codigoPostalFormato"),
+      path: ["codigo_postal"],
+    })
+    .refine((v) => validarNIF(v.nif), {
+      message: t("erros.nifInvalido"),
+      path: ["nif"],
+    })
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -75,6 +81,7 @@ export default function RegistoPage() {
       nif: "",
       password: "",
       confirmarPassword: "",
+      aceitaPrivacidade: false as unknown as true,
     },
   })
 
@@ -95,11 +102,7 @@ export default function RegistoPage() {
     })
 
     if (error) {
-      setErro(
-        error.message === "User already registered"
-          ? "Já existe uma conta com este email."
-          : error.message
-      )
+      setErro(error.message === "User already registered" ? t("erros.contaExistente") : error.message)
       setAEnviar(false)
       return
     }
@@ -144,15 +147,12 @@ export default function RegistoPage() {
 
   if (emailPorConfirmar) {
     return (
-      <AuthShell title="Confirma o teu email" description="">
+      <AuthShell title={t("confirmaEmailTitulo")} description="">
         <div className="flex flex-col items-center gap-3 text-center text-sm text-muted-foreground">
           <MailCheck className="h-10 w-10 text-domain-blue" />
-          <p>
-            Enviámos um link de confirmação para o teu email. Confirma a conta
-            para poderes entrar.
-          </p>
+          <p>{t("confirmaEmailTexto")}</p>
           <Link href="/login" className="font-medium text-domain-blue hover:underline">
-            Voltar ao login
+            {t("voltarLogin")}
           </Link>
         </div>
       </AuthShell>
@@ -161,13 +161,13 @@ export default function RegistoPage() {
 
   return (
     <AuthShell
-      title="Criar conta"
-      description="Regista-te como cliente BTS"
+      title={t("titulo")}
+      description={t("descricao")}
       footer={
         <>
-          Já tens conta?{" "}
+          {t("jaTensConta")}{" "}
           <Link href="/login" className="font-medium text-domain-blue hover:underline">
-            Entrar
+            {t("entrar")}
           </Link>
         </>
       }
@@ -180,9 +180,9 @@ export default function RegistoPage() {
               name="nome"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel>{t("nome")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="O teu nome" autoComplete="name" {...field} />
+                    <Input placeholder={t("nomePlaceholder")} autoComplete="name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -193,7 +193,7 @@ export default function RegistoPage() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="tu@exemplo.pt" autoComplete="email" {...field} />
                   </FormControl>
@@ -206,7 +206,7 @@ export default function RegistoPage() {
               name="telefone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Telefone</FormLabel>
+                  <FormLabel>{t("telefone")}</FormLabel>
                   <FormControl>
                     <Input type="tel" placeholder="9xxxxxxxx" autoComplete="tel" {...field} />
                   </FormControl>
@@ -220,17 +220,17 @@ export default function RegistoPage() {
 
           <div className="space-y-4">
             <div>
-              <h2 className="text-sm font-semibold text-muted-foreground">Morada e faturação</h2>
-              <FormDescription>Precisamos destes dados para agendar visitas e emitir faturas.</FormDescription>
+              <h2 className="text-sm font-semibold text-muted-foreground">{t("moradaFaturacao")}</h2>
+              <FormDescription>{t("moradaFaturacaoDescricao")}</FormDescription>
             </div>
             <FormField
               control={form.control}
               name="morada"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Morada</FormLabel>
+                  <FormLabel>{t("morada")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Rua, número, andar" autoComplete="street-address" {...field} />
+                    <Input placeholder={t("moradaPlaceholder")} autoComplete="street-address" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -242,7 +242,7 @@ export default function RegistoPage() {
                 name="codigo_postal"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Código postal</FormLabel>
+                    <FormLabel>{t("codigoPostal")}</FormLabel>
                     <FormControl>
                       <Input placeholder="0000-000" autoComplete="postal-code" {...field} />
                     </FormControl>
@@ -255,11 +255,11 @@ export default function RegistoPage() {
                 name="distrito"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Distrito</FormLabel>
+                    <FormLabel>{t("distrito")}</FormLabel>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Escolhe o distrito">
+                          <SelectValue placeholder={t("escolheDistrito")}>
                             {(value: string | null) => value || ""}
                           </SelectValue>
                         </SelectTrigger>
@@ -282,7 +282,7 @@ export default function RegistoPage() {
               name="nif"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>NIF</FormLabel>
+                  <FormLabel>{t("nif")}</FormLabel>
                   <FormControl>
                     <Input placeholder="000000000" inputMode="numeric" {...field} />
                   </FormControl>
@@ -300,7 +300,7 @@ export default function RegistoPage() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Palavra-passe</FormLabel>
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
                     <Input type="password" autoComplete="new-password" {...field} />
                   </FormControl>
@@ -313,7 +313,7 @@ export default function RegistoPage() {
               name="confirmarPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirmar palavra-passe</FormLabel>
+                  <FormLabel>{t("confirmarPassword")}</FormLabel>
                   <FormControl>
                     <Input type="password" autoComplete="new-password" {...field} />
                   </FormControl>
@@ -323,6 +323,31 @@ export default function RegistoPage() {
             />
           </div>
 
+          <FormField
+            control={form.control}
+            name="aceitaPrivacidade"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start gap-2.5">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={(checked) => field.onChange(checked === true)}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel className="text-sm font-normal">
+                    {t("aceito")}{" "}
+                    <Link href="/privacidade" className="font-medium underline hover:text-foreground" target="_blank">
+                      {t("politicaPrivacidade")}
+                    </Link>
+                    .
+                  </FormLabel>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
           {erro && (
             <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
               {erro}
@@ -331,16 +356,8 @@ export default function RegistoPage() {
 
           <Button type="submit" className="w-full" disabled={aEnviar}>
             {aEnviar && <Loader2 className="h-4 w-4 animate-spin" />}
-            Criar conta
+            {t("botao")}
           </Button>
-
-          <p className="text-center text-xs text-muted-foreground">
-            Ao criar conta, aceitas a nossa{" "}
-            <Link href="/privacidade" className="font-medium underline hover:text-foreground">
-              Política de Privacidade
-            </Link>
-            .
-          </p>
         </form>
       </Form>
     </AuthShell>

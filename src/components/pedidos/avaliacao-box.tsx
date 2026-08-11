@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Star, Loader2 } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/client"
@@ -54,6 +55,7 @@ export function AvaliacaoBox({
   avaliacaoExistente: Avaliacao | null
 }) {
   const router = useRouter()
+  const t = useTranslations("Cliente.avaliacao")
   const [classificacao, setClassificacao] = useState(0)
   const [comentario, setComentario] = useState("")
   const [aEnviar, setAEnviar] = useState(false)
@@ -67,7 +69,7 @@ export function AvaliacaoBox({
           <p className="text-sm text-foreground/90">{avaliacaoExistente.comentario}</p>
         )}
         <p className="text-xs text-muted-foreground">
-          Avaliado em {formatData(avaliacaoExistente.data_avaliacao)}
+          {t("avaliadoEm", { data: formatData(avaliacaoExistente.data_avaliacao) })}
         </p>
       </div>
     )
@@ -97,10 +99,10 @@ export function AvaliacaoBox({
 
   return (
     <div className="space-y-3 rounded-lg border bg-card p-4">
-      <p className="text-sm font-medium">Como avalias este serviço?</p>
+      <p className="text-sm font-medium">{t("titulo")}</p>
       <Estrelas valor={classificacao} onChange={setClassificacao} tamanho="h-8 w-8" />
       <Textarea
-        placeholder="Comentário (opcional)"
+        placeholder={t("comentarioPlaceholder")}
         rows={3}
         value={comentario}
         onChange={(e) => setComentario(e.target.value)}
@@ -108,7 +110,7 @@ export function AvaliacaoBox({
       {erro && <p className="text-sm text-red-600 dark:text-red-400">{erro}</p>}
       <Button size="sm" onClick={enviar} disabled={aEnviar || classificacao === 0}>
         {aEnviar && <Loader2 className="h-4 w-4 animate-spin" />}
-        Enviar avaliação
+        {t("botao")}
       </Button>
     </div>
   )

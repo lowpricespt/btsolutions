@@ -1,14 +1,19 @@
 import Link from "next/link"
 import { PlusCircle, ClipboardList, Inbox } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
 import { EstadoBadge } from "@/components/estado-badge"
 import { StatCard } from "@/components/stat-card"
 import { ESTADO_PEDIDO, PRIORIDADE } from "@/lib/labels"
+import { traduzEnum } from "@/lib/labels-i18n"
 import { formatData, formatMoeda } from "@/lib/format"
 
 export default async function ClienteDashboardPage() {
   const supabase = await createClient()
+  const [t, tEnums] = await Promise.all([getTranslations("Cliente.dashboard"), getTranslations("Enums")])
+  const estadoPedido = traduzEnum(tEnums, "estadoPedido", ESTADO_PEDIDO)
+  const prioridade = traduzEnum(tEnums, "prioridade", PRIORIDADE)
 
   const { data: pedidos } = await supabase
     .from("pedidos")
@@ -22,24 +27,22 @@ export default async function ClienteDashboardPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Os meus pedidos</h1>
-          <p className="text-sm text-muted-foreground">
-            Acompanha o estado dos serviços que pediste à BTS.
-          </p>
+          <h1 className="text-2xl font-semibold tracking-tight">{t("titulo")}</h1>
+          <p className="text-sm text-muted-foreground">{t("subtitulo")}</p>
         </div>
         <Button
           render={
             <Link href="/cliente/pedidos/novo">
               <PlusCircle className="h-4 w-4" />
-              Novo pedido
+              {t("novoPedido")}
             </Link>
           }
         />
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:max-w-md">
-        <StatCard titulo="Pedidos em aberto" valor={emAberto} icon={ClipboardList} dominio="blue" />
-        <StatCard titulo="Total de pedidos" valor={lista.length} icon={Inbox} dominio="green" />
+        <StatCard titulo={t("pedidosAbertos")} valor={emAberto} icon={ClipboardList} dominio="blue" />
+        <StatCard titulo={t("totalPedidos")} valor={lista.length} icon={Inbox} dominio="green" />
       </div>
 
       {lista.length === 0 ? (
@@ -48,18 +51,15 @@ export default async function ClienteDashboardPage() {
             <Inbox className="h-6 w-6" />
           </span>
           <div>
-            <p className="font-semibold">Bem-vindo à BTS!</p>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              Ainda não fizeste nenhum pedido. Diz-nos o que precisas e a nossa equipa entra em
-              contacto contigo em menos de 24h.
-            </p>
+            <p className="font-semibold">{t("bemVindo")}</p>
+            <p className="mt-1 max-w-sm text-sm text-muted-foreground">{t("semPedidosTexto")}</p>
           </div>
           <Button
             className="mt-2 bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
             render={
               <Link href="/cliente/pedidos/novo">
                 <PlusCircle className="h-4 w-4" />
-                Pedir o primeiro serviço
+                {t("pedirPrimeiro")}
               </Link>
             }
           />
@@ -74,14 +74,14 @@ export default async function ClienteDashboardPage() {
             >
               <div className="flex items-start justify-between gap-2">
                 <p className="font-medium leading-snug">{pedido.titulo}</p>
-                <EstadoBadge {...ESTADO_PEDIDO[pedido.estado]} />
+                <EstadoBadge {...estadoPedido[pedido.estado]} />
               </div>
               <p className="text-sm text-muted-foreground">
-                {pedido.tipos_servico?.nome ?? "Serviço a definir"}
+                {pedido.tipos_servico?.nome ?? t("servicoADefinir")}
               </p>
               <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
-                <span>Pedido em {formatData(pedido.data_pedido)}</span>
-                <EstadoBadge {...PRIORIDADE[pedido.prioridade]} />
+                <span>{t("pedidoEm", { data: formatData(pedido.data_pedido) })}</span>
+                <EstadoBadge {...prioridade[pedido.prioridade]} />
               </div>
               {pedido.valor_final !== null && (
                 <p className="text-sm font-medium">{formatMoeda(pedido.valor_final)}</p>

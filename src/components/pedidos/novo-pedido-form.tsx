@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { useTranslations } from "next-intl"
 import { Loader2 } from "lucide-react"
 
 import { PRIORIDADE } from "@/lib/labels"
+import { traduzEnum } from "@/lib/labels-i18n"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -36,20 +38,23 @@ type TipoServico = {
   especialidades: { nome: string } | null
 }
 
-const schema = z.object({
-  id_tipo_servico: z.string().min(1, "Escolhe o tipo de serviço"),
-  titulo: z.string().min(3, "Descreve brevemente o pedido"),
-  descricao: z.string().optional(),
-  morada_servico: z.string().min(3, "Indica a morada onde o serviço vai ser feito"),
-  codigo_postal_servico: z.string().optional(),
-  data_pretendida: z.string().optional(),
-  prioridade: z.enum(["baixa", "normal", "alta", "urgente"]),
-})
-
 export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }) {
   const router = useRouter()
+  const t = useTranslations("Cliente.novoPedido")
+  const tEnums = useTranslations("Enums")
+  const prioridade = traduzEnum(tEnums, "prioridade", PRIORIDADE)
   const [erro, setErro] = useState<string | null>(null)
   const [aEnviar, setAEnviar] = useState(false)
+
+  const schema = z.object({
+    id_tipo_servico: z.string().min(1, t("erros.tipoServico")),
+    titulo: z.string().min(3, t("erros.titulo")),
+    descricao: z.string().optional(),
+    morada_servico: z.string().min(3, t("erros.morada")),
+    codigo_postal_servico: z.string().optional(),
+    data_pretendida: z.string().optional(),
+    prioridade: z.enum(["baixa", "normal", "alta", "urgente"]),
+  })
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -84,7 +89,7 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
     const dados = await resposta.json()
 
     if (!resposta.ok) {
-      setErro(dados.erro ?? "Não foi possível criar o pedido.")
+      setErro(dados.erro ?? t("erros.generico"))
       setAEnviar(false)
       return
     }
@@ -101,11 +106,11 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
           name="id_tipo_servico"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tipo de serviço</FormLabel>
+              <FormLabel>{t("tipoServico")}</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Escolhe o serviço que precisas">
+                    <SelectValue placeholder={t("escolheServico")}>
                       {(value: string | null) =>
                         tiposServico.find((ts) => String(ts.id) === value)?.nome
                       }
@@ -131,9 +136,9 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
           name="titulo"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Título do pedido</FormLabel>
+              <FormLabel>{t("tituloPedido")}</FormLabel>
               <FormControl>
-                <Input placeholder="Ex.: Substituir tomada da cozinha" {...field} />
+                <Input placeholder={t("tituloPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -145,13 +150,9 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
           name="descricao"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Descrição (opcional)</FormLabel>
+              <FormLabel>{t("descricao")}</FormLabel>
               <FormControl>
-                <Textarea
-                  rows={4}
-                  placeholder="Explica com mais detalhe o que precisas"
-                  {...field}
-                />
+                <Textarea rows={4} placeholder={t("descricaoPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -164,9 +165,9 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
             name="morada_servico"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Morada do serviço</FormLabel>
+                <FormLabel>{t("moradaServico")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Rua, número, andar" {...field} />
+                  <Input placeholder={t("moradaPlaceholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -177,7 +178,7 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
             name="codigo_postal_servico"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Código postal</FormLabel>
+                <FormLabel>{t("codigoPostal")}</FormLabel>
                 <FormControl>
                   <Input placeholder="0000-000" {...field} />
                 </FormControl>
@@ -193,11 +194,11 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
             name="data_pretendida"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Data pretendida (opcional)</FormLabel>
+                <FormLabel>{t("dataPretendida")}</FormLabel>
                 <FormControl>
                   <Input type="date" {...field} />
                 </FormControl>
-                <FormDescription>Vamos tentar agendar o mais próximo possível.</FormDescription>
+                <FormDescription>{t("dataPretendidaDescricao")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -207,22 +208,21 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
             name="prioridade"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Prioridade</FormLabel>
+                <FormLabel>{t("prioridade")}</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full">
                       <SelectValue>
-                        {(value: string | null) =>
-                          value ? PRIORIDADE[value as keyof typeof PRIORIDADE].label : ""
-                        }
+                        {(value: string | null) => (value ? prioridade[value].label : "")}
                       </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="baixa">Baixa</SelectItem>
-                    <SelectItem value="normal">Normal</SelectItem>
-                    <SelectItem value="alta">Alta</SelectItem>
-                    <SelectItem value="urgente">Urgente</SelectItem>
+                    {Object.entries(prioridade).map(([valor, { label }]) => (
+                      <SelectItem key={valor} value={valor}>
+                        {label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -239,7 +239,7 @@ export function NovoPedidoForm({ tiposServico }: { tiposServico: TipoServico[] }
 
         <Button type="submit" disabled={aEnviar}>
           {aEnviar && <Loader2 className="h-4 w-4 animate-spin" />}
-          Pedir serviço
+          {t("botao")}
         </Button>
       </form>
     </Form>

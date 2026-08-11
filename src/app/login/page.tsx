@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { useTranslations } from "next-intl"
 import { Loader2 } from "lucide-react"
 
 import { createClient } from "@/lib/supabase/client"
@@ -22,15 +23,16 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
-const schema = z.object({
-  email: z.string().min(1, "Indica o email").email("Email inválido"),
-  password: z.string().min(1, "Indica a palavra-passe"),
-})
-
 export default function LoginPage() {
   const router = useRouter()
+  const t = useTranslations("Login")
   const [erro, setErro] = useState<string | null>(null)
   const [aEnviar, setAEnviar] = useState(false)
+
+  const schema = z.object({
+    email: z.string().min(1, t("erroEmail")).email(t("erroEmailInvalido")),
+    password: z.string().min(1, t("erroPassword")),
+  })
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -45,11 +47,7 @@ export default function LoginPage() {
     const { data, error } = await supabase.auth.signInWithPassword(values)
 
     if (error) {
-      setErro(
-        error.message === "Invalid login credentials"
-          ? "Email ou palavra-passe incorretos."
-          : error.message
-      )
+      setErro(error.message === "Invalid login credentials" ? t("erroCredenciais") : error.message)
       setAEnviar(false)
       return
     }
@@ -66,13 +64,13 @@ export default function LoginPage() {
 
   return (
     <AuthShell
-      title="Entrar"
-      description="Acede à tua conta BTS"
+      title={t("titulo")}
+      description={t("descricao")}
       footer={
         <>
-          Ainda não tens conta?{" "}
+          {t("semConta")}{" "}
           <Link href="/registo" className="font-medium text-domain-blue hover:underline">
-            Criar conta
+            {t("criarConta")}
           </Link>
         </>
       }
@@ -84,7 +82,7 @@ export default function LoginPage() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("email")}</FormLabel>
                 <FormControl>
                   <Input type="email" placeholder="tu@exemplo.pt" autoComplete="email" {...field} />
                 </FormControl>
@@ -97,7 +95,7 @@ export default function LoginPage() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Palavra-passe</FormLabel>
+                <FormLabel>{t("password")}</FormLabel>
                 <FormControl>
                   <Input type="password" autoComplete="current-password" {...field} />
                 </FormControl>
@@ -114,7 +112,7 @@ export default function LoginPage() {
 
           <Button type="submit" className="w-full" disabled={aEnviar}>
             {aEnviar && <Loader2 className="h-4 w-4 animate-spin" />}
-            Entrar
+            {t("botao")}
           </Button>
         </form>
       </Form>
