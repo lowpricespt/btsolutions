@@ -3,7 +3,6 @@
 import { useTransition } from "react"
 import { useLocale } from "next-intl"
 import { useRouter } from "next/navigation"
-import { Globe } from "lucide-react"
 import {
   Select,
   SelectContent,
@@ -12,12 +11,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const IDIOMAS: Record<string, string> = {
-  pt: "Português",
-  en: "English",
-  fr: "Français",
-  es: "Español",
-  de: "Deutsch",
+const IDIOMAS: Record<string, { nome: string; bandeira: string }> = {
+  pt: { nome: "Português", bandeira: "🇵🇹" },
+  en: { nome: "English", bandeira: "🇬🇧" },
+  fr: { nome: "Français", bandeira: "🇫🇷" },
+  es: { nome: "Español", bandeira: "🇪🇸" },
+  de: { nome: "Deutsch", bandeira: "🇩🇪" },
 }
 
 export function LanguageSwitcher({ className }: { className?: string }) {
@@ -40,12 +39,14 @@ export function LanguageSwitcher({ className }: { className?: string }) {
   return (
     <Select value={locale} onValueChange={mudar} disabled={aMudar}>
       <SelectTrigger size="sm" className={className}>
-        <Globe className="h-3.5 w-3.5" />
-        <SelectValue>{(v: string | null) => (v ? IDIOMAS[v] : "")}</SelectValue>
+        <SelectValue>
+          {(v: string | null) => (v ? `${IDIOMAS[v].bandeira} ${IDIOMAS[v].nome}` : "")}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
-        {Object.entries(IDIOMAS).map(([codigo, nome]) => (
+        {Object.entries(IDIOMAS).map(([codigo, { nome, bandeira }]) => (
           <SelectItem key={codigo} value={codigo}>
+            <span className="mr-1.5">{bandeira}</span>
             {nome}
           </SelectItem>
         ))}
