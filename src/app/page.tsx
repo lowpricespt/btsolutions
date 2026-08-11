@@ -1,7 +1,5 @@
-"use client"
-
-import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Zap,
   Wifi,
@@ -20,7 +18,6 @@ import {
   Clock,
   BadgeEuro,
   Star,
-  Menu,
   Phone,
   Mail,
   MapPin,
@@ -30,9 +27,10 @@ import {
   Map,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Logo } from "@/components/brand/logo"
 import { CONTACTO } from "@/lib/contacto"
+import { MobileNav } from "@/components/landing/mobile-nav"
+import { Reveal } from "@/components/landing/reveal"
 
 const SERVICOS = [
   {
@@ -87,9 +85,9 @@ const PASSOS = [
 ]
 
 const VANTAGENS = [
-  { icon: Clock, titulo: "Resposta em 24h", texto: "Respondemos a todos os pedidos em dias úteis — mais rápido via WhatsApp." },
-  { icon: ShieldCheck, titulo: "Garantia total", texto: "12 meses em instalações e 6 meses em reparações." },
-  { icon: BadgeEuro, titulo: "Sem surpresas no preço", texto: "Orçamento grátis e sem compromisso antes de começar." },
+  { icon: Clock, valor: "< 24H", titulo: "Resposta rápida", texto: "Respondemos a todos os pedidos em dias úteis — mais rápido via WhatsApp." },
+  { icon: ShieldCheck, valor: "12 MESES", titulo: "Garantia total", texto: "Em instalações — 6 meses em reparações." },
+  { icon: BadgeEuro, valor: "0€", titulo: "Orçamento grátis", texto: "Sem surpresas no preço, sem compromisso." },
 ]
 
 const CONFIANCA = [
@@ -106,13 +104,11 @@ const NAV_LINKS = [
 ]
 
 export default function LandingPage() {
-  const [menuAberto, setMenuAberto] = useState(false)
-
   return (
     <div className="flex min-h-screen flex-1 flex-col bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-8">
-          <Logo tamanho="h-10" />
+          <Logo tamanho="h-10" priority />
 
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((l) => (
@@ -130,57 +126,34 @@ export default function LandingPage() {
             />
           </div>
 
-          <Sheet open={menuAberto} onOpenChange={setMenuAberto}>
-            <SheetTrigger
-              render={
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              }
-            />
-            <SheetContent side="right" className="w-72 p-0">
-              <SheetTitle className="sr-only">Menu</SheetTitle>
-              <div className="border-b px-5 py-4">
-                <Logo tamanho="h-8" />
-              </div>
-              <nav className="flex flex-col gap-1 px-3 py-4">
-                {NAV_LINKS.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setMenuAberto(false)}
-                    className="rounded-md px-2.5 py-2.5 text-sm font-medium text-foreground/80 hover:bg-muted"
-                  >
-                    {l.label}
-                  </a>
-                ))}
-              </nav>
-              <div className="mt-auto flex flex-col gap-2 border-t p-4">
-                <Button variant="outline" render={<Link href="/login">Entrar</Link>} />
-                <Button
-                  className="bg-brand-gold text-brand-gold-foreground hover:bg-brand-gold/90"
-                  render={<Link href="/registo">Criar conta</Link>}
-                />
-              </div>
-            </SheetContent>
-          </Sheet>
+          <MobileNav navLinks={NAV_LINKS} />
         </div>
       </header>
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-brand-navy text-brand-navy-foreground">
+        <section className="bg-noise relative overflow-hidden bg-brand-navy text-brand-navy-foreground">
+          <div className="bg-grid-pattern pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-gold/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-brand-teal/20 blur-3xl" />
+          <Image
+            src="/patterns/network.svg"
+            alt=""
+            aria-hidden="true"
+            width={600}
+            height={600}
+            className="pointer-events-none absolute -right-16 top-1/2 hidden h-[38rem] w-[38rem] -translate-y-1/2 opacity-60 lg:block"
+          />
+
           <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-brand-gold">
                 <Star className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
-                Trabalho sério, preço justo e garantia total
+                Trabalho sério · preço justo · garantia total
               </span>
               <h1 className="mt-5 text-3xl font-bold tracking-tight sm:text-5xl">
                 Serviços técnicos ao domicílio,
-                <span className="text-brand-gold"> sem complicações</span>
+                <span className="text-gradient-gold block sm:inline"> sem complicações</span>
               </h1>
               <p className="mx-auto mt-4 max-w-xl text-white/80 sm:text-lg">
                 Eletricidade, carpintaria, telecomunicações e muito mais. Pede um
@@ -207,9 +180,15 @@ export default function LandingPage() {
             </div>
 
             <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {VANTAGENS.map(({ icon: Icon, titulo, texto }) => (
-                <div key={titulo} className="rounded-xl bg-white/5 p-4 ring-1 ring-white/10">
-                  <Icon className="h-5 w-5 text-brand-gold" />
+              {VANTAGENS.map(({ icon: Icon, valor, titulo, texto }) => (
+                <div
+                  key={titulo}
+                  className="glass-panel glow-on-hover rounded-xl p-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <Icon className="h-5 w-5 text-brand-gold" />
+                    <span className="font-mono text-lg font-bold text-brand-gold">{valor}</span>
+                  </div>
                   <p className="mt-2 text-sm font-semibold">{titulo}</p>
                   <p className="mt-0.5 text-xs text-white/70">{texto}</p>
                 </div>
@@ -228,16 +207,18 @@ export default function LandingPage() {
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {PASSOS.map(({ icon: Icon, titulo, texto }, i) => (
-              <div key={titulo} className="relative rounded-2xl border bg-card p-6">
-                <span className="absolute -top-3 -left-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy text-xs font-bold text-brand-navy-foreground">
-                  {i + 1}
-                </span>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold-soft text-brand-gold-foreground">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <p className="mt-4 font-semibold">{titulo}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
-              </div>
+              <Reveal key={titulo} delay={i * 100}>
+                <div className="glow-on-hover relative h-full rounded-2xl border bg-card p-6">
+                  <span className="absolute -top-3 -left-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy font-mono text-xs font-bold text-brand-navy-foreground">
+                    {i + 1}
+                  </span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gold-soft text-brand-gold-foreground">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <p className="mt-4 font-semibold">{titulo}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
@@ -252,19 +233,18 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {SERVICOS.map(({ nome, icon: Icon, cor, texto }) => (
-                <div
-                  key={nome}
-                  className="flex gap-3 rounded-xl border bg-card p-4 transition-shadow hover:shadow-md"
-                >
-                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${CORES[cor]}`}>
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold">{nome}</p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{texto}</p>
+              {SERVICOS.map(({ nome, icon: Icon, cor, texto }, i) => (
+                <Reveal key={nome} delay={(i % 3) * 80}>
+                  <div className="glow-on-hover flex h-full gap-3 rounded-xl border bg-card p-4">
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${CORES[cor]}`}>
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold">{nome}</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">{texto}</p>
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -279,14 +259,16 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {CONFIANCA.map(({ icon: Icon, titulo, texto }) => (
-              <div key={titulo} className="rounded-2xl border bg-card p-6 text-center">
-                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-teal-soft text-brand-teal">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <p className="mt-4 font-semibold">{titulo}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
-              </div>
+            {CONFIANCA.map(({ icon: Icon, titulo, texto }, i) => (
+              <Reveal key={titulo} delay={i * 100}>
+                <div className="glow-on-hover h-full rounded-2xl border bg-card p-6 text-center">
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-teal-soft text-brand-teal">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <p className="mt-4 font-semibold">{titulo}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{texto}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
@@ -342,8 +324,9 @@ export default function LandingPage() {
 
         {/* CTA final */}
         <section className="relative overflow-hidden bg-brand-navy px-4 py-16 text-center text-brand-navy-foreground sm:px-8 sm:py-20">
+          <div className="bg-grid-pattern pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_70%_100%_at_50%_50%,black,transparent)]" />
           <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand-teal/20 blur-3xl" />
-          <div className="relative mx-auto max-w-xl">
+          <Reveal className="relative mx-auto max-w-xl">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
               Precisas de um técnico? Estamos a um pedido de distância.
             </h2>
@@ -361,7 +344,7 @@ export default function LandingPage() {
                 }
               />
             </div>
-          </div>
+          </Reveal>
         </section>
       </main>
 

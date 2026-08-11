@@ -26,8 +26,9 @@ export async function PedidosLista({
 
   let query = supabase
     .from("pedidos")
-    .select("*, tipos_servico(nome), clientes(utilizadores(nome))")
+    .select("id, titulo, estado, prioridade, data_pedido, tipos_servico(nome), clientes(utilizadores(nome))")
     .order("data_pedido", { ascending: false })
+    .limit(200)
 
   if (estadoFiltro && estadoFiltro !== "todos") {
     query = query.eq(

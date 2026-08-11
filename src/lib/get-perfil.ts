@@ -19,7 +19,7 @@ export async function exigirPerfil(tiposPermitidos: TipoUtilizador[]) {
 
   const { data: perfil } = await supabase
     .from("utilizadores")
-    .select("*")
+    .select("id, nome, email, tipo_utilizador")
     .eq("id", user.id)
     .single()
 

@@ -4,7 +4,7 @@ import { ViaturasManager } from "@/components/admin/viaturas-manager"
 export default async function ViaturasPage() {
   const supabase = await createClient()
   const [{ data: viaturas }, { data: funcionariosRaw }] = await Promise.all([
-    supabase.from("viaturas").select("*, funcionarios(utilizadores(nome))").order("matricula"),
+    supabase.from("viaturas").select("*, funcionarios(utilizadores(nome))").order("matricula").limit(200),
     supabase.from("funcionarios").select("id, utilizadores(nome)").eq("ativo", true),
   ])
 

@@ -30,7 +30,9 @@ export async function PedidoDetalheStaff({
 
   const { data: pedido } = await supabase
     .from("pedidos")
-    .select("*, tipos_servico(nome, especialidades(nome)), clientes(id, nif, utilizadores(nome, email, telefone))")
+    .select(
+      "id, titulo, estado, prioridade, descricao, data_pedido, data_pretendida, morada_servico, codigo_postal_servico, valor_orcamento, valor_final, tipos_servico(nome, especialidades(nome)), clientes(utilizadores(nome, email, telefone))"
+    )
     .eq("id", pedidoId)
     .single()
 
@@ -63,15 +65,21 @@ export async function PedidoDetalheStaff({
       .eq("id_trabalho", trabalho.id)
       .order("data_upload")
 
-    if (anexosRows) {
-      anexos = await Promise.all(
-        anexosRows.map(async (a) => {
-          const { data: signed } = await supabase.storage
-            .from("anexos")
-            .createSignedUrl(a.url_ficheiro, 3600)
-          return { id: a.id, tipo: a.tipo, data_upload: a.data_upload, url: signed?.signedUrl ?? null }
-        })
-      )
+    if (anexosRows && anexosRows.length > 0) {
+      const { data: signedUrls } = await supabase.storage
+        .from("anexos")
+        .createSignedUrls(
+          anexosRows.map((a) => a.url_ficheiro),
+          3600
+        )
+      const urlByPath = new Map((signedUrls ?? []).map((s) => [s.path, s.signedUrl]))
+
+      anexos = anexosRows.map((a) => ({
+        id: a.id,
+        tipo: a.tipo,
+        data_upload: a.data_upload,
+        url: urlByPath.get(a.url_ficheiro) ?? null,
+      }))
     }
   }
 

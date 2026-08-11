@@ -14,10 +14,12 @@ export function Logo({
   className,
   tamanho = "h-9",
   monocromatico = false,
+  priority = false,
 }: {
   className?: string
   tamanho?: string
   monocromatico?: boolean
+  priority?: boolean
 }) {
   const [falhou, setFalhou] = useState(false)
 
@@ -30,6 +32,7 @@ export function Logo({
         height={160}
         className={cn(tamanho, "w-auto object-contain", className)}
         onError={() => setFalhou(true)}
+        priority={priority}
       />
     )
   }

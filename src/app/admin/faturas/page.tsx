@@ -26,7 +26,13 @@ export default async function FaturasPage() {
     }))
 
   const ano = new Date().getFullYear()
-  const proximoNumero = `FT-${ano}-${String((faturas?.length ?? 0) + 1).padStart(4, "0")}`
+  const prefixoAno = `FT-${ano}-`
+  const ultimaSequencia = (faturas ?? [])
+    .filter((f) => f.numero_fatura.startsWith(prefixoAno))
+    .map((f) => Number(f.numero_fatura.slice(prefixoAno.length)))
+    .filter((n) => Number.isFinite(n))
+    .reduce((max, n) => Math.max(max, n), 0)
+  const proximoNumero = `${prefixoAno}${String(ultimaSequencia + 1).padStart(4, "0")}`
 
   return (
     <div className="space-y-6">

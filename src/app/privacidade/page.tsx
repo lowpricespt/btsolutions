@@ -4,7 +4,12 @@ import { Logo } from "@/components/brand/logo"
 import { CONTACTO } from "@/lib/contacto"
 
 export const metadata = {
-  title: "Política de Privacidade — BTS",
+  title: "Política de Privacidade",
+  description:
+    "Como a BTS — Bizarro Total Solutions recolhe, usa e protege os teus dados pessoais, nos termos do RGPD.",
+  alternates: {
+    canonical: "/privacidade",
+  },
 }
 
 export default function PrivacidadePage() {
@@ -27,7 +32,7 @@ export default function PrivacidadePage() {
           <section>
             <h2 className="text-lg font-semibold text-foreground">1. Quem somos</h2>
             <p className="mt-2">
-              A BTS — Bizarro Total Solutions ("nós", "a nossa empresa") presta serviços técnicos ao
+              A BTS — Bizarro Total Solutions (&ldquo;nós&rdquo;, &ldquo;a nossa empresa&rdquo;) presta serviços técnicos ao
               domicílio (eletricidade, telecomunicações, carpintaria e outros). Esta plataforma
               permite a clientes pedir serviços e acompanhar o respetivo estado.
             </p>
@@ -88,7 +93,7 @@ export default function PrivacidadePage() {
             <ul className="mt-2 list-disc space-y-1 pl-5">
               <li>Aceder aos dados que temos sobre ti.</li>
               <li>Solicitar a retificação de dados incorretos.</li>
-              <li>Solicitar o apagamento dos teus dados ("direito ao esquecimento").</li>
+              <li>Solicitar o apagamento dos teus dados (&ldquo;direito ao esquecimento&rdquo;).</li>
               <li>Opor-te ao tratamento ou solicitar a limitação do mesmo.</li>
               <li>Solicitar a portabilidade dos teus dados.</li>
             </ul>

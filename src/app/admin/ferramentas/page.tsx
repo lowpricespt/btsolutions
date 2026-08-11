@@ -4,7 +4,7 @@ import { FerramentasManager } from "@/components/admin/ferramentas-manager"
 export default async function FerramentasPage() {
   const supabase = await createClient()
   const [{ data: ferramentas }, { data: funcionariosRaw }] = await Promise.all([
-    supabase.from("ferramentas").select("*, funcionarios(utilizadores(nome))").order("nome"),
+    supabase.from("ferramentas").select("*, funcionarios(utilizadores(nome))").order("nome").limit(200),
     supabase.from("funcionarios").select("id, utilizadores(nome)").eq("ativo", true),
   ])
 

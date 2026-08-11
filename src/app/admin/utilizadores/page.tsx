@@ -10,6 +10,7 @@ export default async function UtilizadoresPage() {
     .from("utilizadores")
     .select("id, nome, email, tipo_utilizador, estado, data_registo")
     .order("data_registo", { ascending: false })
+    .limit(200)
 
   return (
     <div className="space-y-6">

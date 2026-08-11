@@ -4,7 +4,7 @@ import { MaterialManager } from "@/components/admin/material-manager"
 export default async function MaterialPage() {
   const supabase = await createClient()
   const [{ data: materiais }, { data: fornecedores }] = await Promise.all([
-    supabase.from("materiais").select("*, fornecedores(nome)").order("nome"),
+    supabase.from("materiais").select("*, fornecedores(nome)").order("nome").limit(200),
     supabase.from("fornecedores").select("id, nome").order("nome"),
   ])
 

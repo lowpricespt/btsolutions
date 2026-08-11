@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g stroke="#c9a227" stroke-opacity="0.35" stroke-width="1.2">
+    <line x1="120" y1="140" x2="260" y2="90"/>
+    <line x1="260" y1="90" x2="420" y2="150"/>
+    <line x1="260" y1="90" x2="300" y2="230"/>
+    <line x1="120" y1="140" x2="180" y2="290"/>
+    <line x1="180" y1="290" x2="300" y2="230"/>
+    <line x1="300" y1="230" x2="420" y2="150"/>
+    <line x1="300" y1="230" x2="380" y2="360"/>
+    <line x1="180" y1="290" x2="150" y2="440"/>
+    <line x1="180" y1="290" x2="330" y2="420"/>
+    <line x1="330" y1="420" x2="380" y2="360"/>
+    <line x1="330" y1="420" x2="470" y2="470"/>
+    <line x1="380" y1="360" x2="500" y2="330"/>
+    <line x1="420" y1="150" x2="500" y2="330"/>
+  </g>
+
+  <g stroke="#5aa9ab" stroke-opacity="0.3" stroke-width="1.2">
+    <line x1="150" y1="440" x2="330" y2="420"/>
+    <line x1="470" y1="470" x2="500" y2="330"/>
+    <line x1="120" y1="140" x2="300" y2="230"/>
+  </g>
+
+  <g fill="#c9a227" filter="url(#glow)">
+    <circle cx="260" cy="90" r="4"/>
+    <circle cx="420" cy="150" r="3"/>
+    <circle cx="300" cy="230" r="5.5"/>
+    <circle cx="380" cy="360" r="4"/>
+    <circle cx="330" cy="420" r="3.5"/>
+    <circle cx="500" cy="330" r="3"/>
+  </g>
+
+  <g fill="#5aa9ab" filter="url(#glow)">
+    <circle cx="120" cy="140" r="3.5"/>
+    <circle cx="180" cy="290" r="4.5"/>
+    <circle cx="150" cy="440" r="3"/>
+    <circle cx="470" cy="470" r="3.5"/>
+  </g>
+
+  <g fill="#ffffff" opacity="0.5">
+    <circle cx="260" cy="90" r="1.4"/>
+    <circle cx="300" cy="230" r="1.8"/>
+    <circle cx="180" cy="290" r="1.4"/>
+    <circle cx="380" cy="360" r="1.4"/>
+  </g>
+</svg>
